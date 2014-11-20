@@ -1,9 +1,16 @@
 # Provides the i.MX6 WiseHMI common settings
 
+MACHINEOVERRIDES = "wisehmi:${MACHINE}"
+
 require conf/machine/include/imx-base.inc
 require conf/machine/include/tune-cortexa9.inc
 
 SERIAL_CONSOLE = "115200 ttymxc3"
+
+KERNEL_DEVICETREE = "imx6dl-wisehmi.dtb"
+
+PREFERRED_PROVIDER_virtual/kernel = "linux-imx6-autorock"
+PREFERRED_VERSION_linux-imx6-autorock = "3.10.17"
 
 KERNEL_IMAGETYPE = "uImage"
 
