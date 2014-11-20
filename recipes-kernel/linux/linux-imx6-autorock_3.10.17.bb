@@ -8,7 +8,7 @@ SRC_URI = "git://git@git.autorock.com/i-mx6/fsl-linux.git;branch=${SRCBRANCH};pr
 
 LOCALVERSION = "-1.0.1_ga+yocto"
 SRCBRANCH = "imx_3.10.17_1.0.1_ga"
-SRCREV = "45add5da5831d3f6ddd1db0160797080a8adf9a5"
+SRCREV = "${AUTOREV}"
 DEPENDS += "lzop-native bc-native u-boot-mkimage-native"
 
 COMPATIBLE_MACHINE = "wisehmi"
