@@ -13,4 +13,3 @@ DEPENDS += "lzop-native bc-native u-boot-mkimage-native"
 
 COMPATIBLE_MACHINE = "wisehmi"
 
-PV = "3.10.17+git${SRCPV}"

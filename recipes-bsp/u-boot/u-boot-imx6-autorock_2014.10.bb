@@ -15,5 +15,3 @@ S = "${WORKDIR}/git"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-PV = "${SRCBRANCH}+git${SRCPV}"
-
