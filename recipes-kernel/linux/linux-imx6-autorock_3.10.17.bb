@@ -1,7 +1,7 @@
 require recipes-kernel/linux/linux-imx.inc
 require recipes-kernel/linux/linux-dtb.inc
 
-SUMMARY = "Linux kernel for Autorock boards"
+SUMMARY = "Linux kernel for Autorock imx6 boards"
 
 SRC_URI = "git://git@git.autorock.com/i-mx6/fsl-linux.git;branch=${SRCBRANCH};protocol=ssh \
            file://defconfig"

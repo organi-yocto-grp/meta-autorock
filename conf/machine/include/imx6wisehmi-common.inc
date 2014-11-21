@@ -9,6 +9,9 @@ SERIAL_CONSOLE = "115200 ttymxc3"
 
 KERNEL_DEVICETREE = "imx6dl-wisehmi.dtb"
 
+PREFERRED_PROVIDER_u-boot = "u-boot-imx6-autorock"
+PREFERRED_VERSION_u-boot-imx6-autorock = "2014.10"
+
 PREFERRED_PROVIDER_virtual/kernel = "linux-imx6-autorock"
 PREFERRED_VERSION_linux-imx6-autorock = "3.10.17"
 
