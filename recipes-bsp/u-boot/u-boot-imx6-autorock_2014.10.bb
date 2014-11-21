@@ -7,8 +7,6 @@ COMPATIBLE_MACHINE = "wisehmi"
 
 PROVIDES = "u-boot"
 
-PV = "v2014.10+git${SRCPV}"
-
 SRCREV = "${AUTOREV}"
 SRCBRANCH = "v2014.10"
 SRC_URI = "git://git@git.autorock.com/i-mx6/das-uboot.git;branch=${SRCBRANCH};protocol=ssh"
@@ -16,3 +14,6 @@ SRC_URI = "git://git@git.autorock.com/i-mx6/das-uboot.git;branch=${SRCBRANCH};pr
 S = "${WORKDIR}/git"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+
+PV = "${SRCBRANCH}+git${SRCPV}"
+

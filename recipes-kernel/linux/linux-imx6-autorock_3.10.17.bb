@@ -12,3 +12,5 @@ SRCREV = "${AUTOREV}"
 DEPENDS += "lzop-native bc-native u-boot-mkimage-native"
 
 COMPATIBLE_MACHINE = "wisehmi"
+
+PV = "${SRCBRANCH}+git${SRCPV}"
