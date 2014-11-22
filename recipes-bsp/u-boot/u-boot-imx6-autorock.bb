@@ -15,3 +15,4 @@ S = "${WORKDIR}/git"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
+PV = "2014.10+git${SRCPV}"
