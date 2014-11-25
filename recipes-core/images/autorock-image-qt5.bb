@@ -6,3 +6,4 @@ IMAGE_FEATURES += "ssh-server-dropbear package-management"
 
 IMAGE_INSTALL_append = "qtdeclarative qtbase-plugins qtdeclarative-plugins qtdeclarative-qmlplugins qtbase-fonts"
 
+NO_RECOMMENDATIONS = "1"

@@ -20,3 +20,5 @@ PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 KERNEL_IMAGETYPE = "uImage"
 
 IMAGE_FSTYPES = "tar.bz2"
+
+MACHINE_FEATURES_remove = "usbgadget usbhost alsa touchscreen"
