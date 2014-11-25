@@ -15,6 +15,8 @@ PREFERRED_PROVIDER_u-boot = "u-boot-imx6-autorock"
 PREFERRED_PROVIDER_virtual/kernel = "linux-imx6-autorock"
 #PREFERRED_VERSION_linux-imx6-autorock = "3.10.17"
 
+PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
+
 KERNEL_IMAGETYPE = "uImage"
 
 IMAGE_FSTYPES = "tar.bz2"
