@@ -22,3 +22,6 @@ KERNEL_IMAGETYPE = "uImage"
 IMAGE_FSTYPES = "tar.bz2"
 
 MACHINE_FEATURES_remove = "usbgadget usbhost alsa touchscreen"
+
+# remove getty tty* from /etc/inittab
+USE_VT = "0"
