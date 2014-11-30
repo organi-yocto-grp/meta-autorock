@@ -35,5 +35,5 @@ FILES_${PN} += "${datadir} ${libdir}"
 
 DEPENDS = "qtdeclarative qtgraphicaleffects"
 
-RDEPENDS_${PN} = "qtdeclarative qtgraphicaleffects-qmlplugins"
+RDEPENDS_${PN} = "qtbase-plugins qtdeclarative-qmlplugins qtgraphicaleffects-qmlplugins"
 
