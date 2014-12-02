@@ -7,8 +7,6 @@ require conf/machine/include/tune-cortexa9.inc
 
 SERIAL_CONSOLE = "115200 ttymxc3"
 
-KERNEL_DEVICETREE = "imx6dl-wisehmi.dtb"
-
 PREFERRED_PROVIDER_u-boot = "u-boot-imx6-autorock"
 #PREFERRED_VERSION_u-boot-imx6-autorock = "2014.10"
 
@@ -25,3 +23,7 @@ MACHINE_FEATURES_remove = "usbgadget usbhost alsa touchscreen"
 
 # remove getty tty* from /etc/inittab
 USE_VT = "0"
+
+SPL_BINARY = "SPL"
+UBOOT_SUFFIX = "img"
+UBOOT_MAKE_TARGET = "all"
