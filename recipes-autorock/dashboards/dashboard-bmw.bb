@@ -21,9 +21,11 @@ S = "${WORKDIR}/git"
 require recipes-qt/qt5/qt5.inc
 
 do_install() {
+	install -d ${D}${bindir}
+	install -m 0755 ${B}/bin/bmw ${D}${bindir}
+
 	install -d ${D}${datadir}/${PN}
 	install -m 0644 ${WORKDIR}/init ${D}${datadir}/${PN}
-	install -m 0755 ${B}/bin/bmw ${D}${datadir}/${PN}
 	cp -a ${S}/3ds ${D}${datadir}/${PN}
 
 	install -d ${D}${libdir}
@@ -31,7 +33,7 @@ do_install() {
 }
 
 FILES_${PN}-dbg += "${datadir}/${PN}/.debug"
-FILES_${PN} += "${datadir} ${libdir}"
+FILES_${PN} += "${bindir} ${datadir} ${libdir}"
 
 DEPENDS = "qtdeclarative qtgraphicaleffects"
 
