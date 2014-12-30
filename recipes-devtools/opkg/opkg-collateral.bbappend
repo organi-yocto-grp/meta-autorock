@@ -1,5 +1,6 @@
 OPKG_BUILD_MACHINE ?= "${MACHINE}"
 OPKG_BUILD_MACHINE_wisehmi = "wisehmi"
+OPKG_BUILD_MACHINE_a20navi = "a20navi"
 
 OPKG_BUILD_FEATURE ?= "base"
 
