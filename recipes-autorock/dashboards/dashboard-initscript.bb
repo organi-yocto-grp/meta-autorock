@@ -1,16 +1,15 @@
 SUMMARY = "init script for dashboard startup"
 SECTION = "autorock"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=ce5c45ec07856b6907cbfe6feee1d180"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-SRC_URI = "file://dashboard \
-		   file://MIT.patch \
-"
-
-DEFAULT_DASHBOARD ?= "dashboard-bmw"
+SRC_URI = "file://dashboard"
 
 INITSCRIPT_NAME = "dashboard"
 INITSCRIPT_PARAMS = "start 06 S ."
+
+DEFAULT_DASHBOARD ?= "dashboard-bmw"
+RDEPENDS_${PN} = "${DEFAULT_DASHBOARD}"
 
 inherit update-rc.d
 
@@ -22,6 +21,3 @@ do_install () {
 	install -m 0755 ${WORKDIR}/dashboard ${D}${sysconfdir}/init.d/
 	ln -snf ${datadir}/${DEFAULT_DASHBOARD}/init ${D}${sysconfdir}/dashboard
 }
-
-RDEPENDS_${PN} = "${DEFAULT_DASHBOARD}"
-
