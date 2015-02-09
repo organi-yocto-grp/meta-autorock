@@ -75,10 +75,14 @@ QT_CONFIG_FLAGS += " \
     -no-pch \
     -no-rpath \
     -pkg-config \
+	-optimized-qmake \
     ${EXTRA_OECONF} \
 "
 
+EGLFS_SOURCE_a20navi = "${S}/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp"
+
 do_configure() {
+
 	${S}/configure  -v \
         -opensource -confirm-license \
         -sysroot ${STAGING_DIR_TARGET} \
@@ -97,8 +101,12 @@ do_configure() {
         -translationdir ${OE_QMAKE_PATH_TRANSLATIONS} \
 		-testsdir ${OE_QMAKE_PATH_TESTS} \
         -examplesdir ${OE_QMAKE_PATH_EXAMPLES} \
-		-hostprefix ${STAGING_DIR_NATIVE}/usr \
-		-device sunxi \
+		-hostprefix ${STAGING_DIR_NATIVE}/${prefix} \
+		-device oe \
+		-device-option COMPILER_FLAGS="${TARGET_CC_ARCH}" \
 		-device-option CROSS_COMPILE=${TARGET_PREFIX} \
+		-device-option OE_QMAKE_CFLAGS="" \
+		-device-option OE_QMAKE_CXXFLAGS="" \
+		-device-option EGLFS_PLATFORM_HOOKS_SOURCES="${EGLFS_SOURCE}" \
 		${QT_CONFIG_FLAGS}
 }

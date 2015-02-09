@@ -1,5 +1,9 @@
 require qmake5-static-path.inc
 
+EXTRA_OEMAKE = " \
+    MAKEFLAGS='${PARALLEL_MAKE}' \
+"
+
 PACKAGES =. "${PN}-qmlplugins-dbg ${PN}-tools-dbg ${PN}-plugins-dbg ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-mkspecs ${PN}-examples-dev ${PN}-examples-staticdev ${PN}-examples-dbg ${PN}-examples "
 
 SOLIBS = ".so.*"
