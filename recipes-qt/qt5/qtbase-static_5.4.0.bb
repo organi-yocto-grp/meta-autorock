@@ -5,15 +5,6 @@ require qmake5-static.inc
 
 PACKAGECONFIG = "release libs gles2 widgets gui freetype jpeg libpng"
 
-do_install() {
-	oe_runmake install INSTALL_ROOT=${D}
-	#RMDIRNAME=`ls ${D}`
-	#mv ${D}${STAGING_DIR_TARGET}${OE_QMAKE_PATH_PREFIX} ${D}
-	# remove host tools which will be installed by native recipe
-	#rm -rf ${D}/${RMDIRNAME}
-	#rmdir ${D}${STAGING_DIR_TARGET}
-}
-
 PACKAGES =. " \
     ${PN}-fonts \
     ${PN}-fonts-ttf-vera \

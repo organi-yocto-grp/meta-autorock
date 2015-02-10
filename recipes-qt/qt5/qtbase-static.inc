@@ -82,7 +82,6 @@ QT_CONFIG_FLAGS += " \
 EGLFS_SOURCE_a20navi = "${S}/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp"
 
 do_configure() {
-
 	${S}/configure  -v \
         -opensource -confirm-license \
         -sysroot ${STAGING_DIR_TARGET} \
@@ -101,7 +100,11 @@ do_configure() {
         -translationdir ${OE_QMAKE_PATH_TRANSLATIONS} \
 		-testsdir ${OE_QMAKE_PATH_TESTS} \
         -examplesdir ${OE_QMAKE_PATH_EXAMPLES} \
-		-hostprefix ${STAGING_DIR_NATIVE}/${prefix} \
+		-hostprefix ${OE_QMAKE_PATH_HOST_PREFIX} \
+		-hostbindir ${OE_QMAKE_PATH_HOST_BINS} \
+		-hostlibdir ${OE_QMAKE_PATH_HOST_LIBS} \
+		-hostdatadir ${OE_QMAKE_PATH_HOST_DATA} \
+		-extprefix ${STAGING_DIR_TARGET}/${OE_QMAKE_PATH_PREFIX} \
 		-device oe \
 		-device-option COMPILER_FLAGS="${TARGET_CC_ARCH}" \
 		-device-option CROSS_COMPILE=${TARGET_PREFIX} \

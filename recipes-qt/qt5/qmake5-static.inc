@@ -4,6 +4,10 @@ EXTRA_OEMAKE = " \
     MAKEFLAGS='${PARALLEL_MAKE}' \
 "
 
+do_install() {
+	oe_runmake install INSTALL_ROOT=${D}
+}
+
 PACKAGES =. "${PN}-qmlplugins-dbg ${PN}-tools-dbg ${PN}-plugins-dbg ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-mkspecs ${PN}-examples-dev ${PN}-examples-staticdev ${PN}-examples-dbg ${PN}-examples "
 
 SOLIBS = ".so.*"
@@ -89,6 +93,9 @@ FILES_${PN}-dev += " \
     ${OE_QMAKE_PATH_LIBS}/*.la \
     ${OE_QMAKE_PATH_DATA}/* \
     ${OE_QMAKE_PATH_HEADERS}/* \
+	${OE_QMAKE_PATH_QML}/*/*.prl \
+	${OE_QMAKE_PATH_QML}/*/*/*.prl \
+	${OE_QMAKE_PATH_QML}/*/*/*/*.prl \
 	${OE_QMAKE_PATH_PLUGINS}/*/*.prl \
     ${OE_QMAKE_PATH_PLUGINS}/*/*/*.prl \
     ${OE_QMAKE_PATH_PLUGINS}/*/*/*/*.prl \
@@ -99,6 +106,9 @@ FILES_${PN}-dbg += " \
 "
 FILES_${PN}-staticdev += " \
     ${OE_QMAKE_PATH_LIBS}/*.a \
+	${OE_QMAKE_PATH_QML}/*/*.a \
+	${OE_QMAKE_PATH_QML}/*/*/*.a \
+	${OE_QMAKE_PATH_QML}/*/*/*/*.a \
 	${OE_QMAKE_PATH_PLUGINS}/*/*.a \
     ${OE_QMAKE_PATH_PLUGINS}/*/*/*.a \
     ${OE_QMAKE_PATH_PLUGINS}/*/*/*/*.a \
