@@ -6,8 +6,6 @@ SRCBRANCH = "v${QT_VERSION}"
 SRCREV = "${AUTOREV}"
 PV = "${QT_VERSION}+git${SRCPV}"
 
-SEPB = "${WORKDIR}/build"
-B = "${SEPB}"
 S = "${WORKDIR}/git"
 
 PACKAGECONFIG[release] = "-release,-debug"

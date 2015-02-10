@@ -1,5 +1,13 @@
-require autorock-image.inc
-
+SUMMARY = "dashboard image"
 DESCRIPTION = "Autorock dashboard image"
+SECTION = "autorock"
 
-IMAGE_INSTALL_append += "dashboard-initscript"
+inherit image
+
+IMAGE_FSTYPES += "squashfs"
+
+NO_RECOMMENDATIONS = "1"
+
+IMAGE_INSTALL_a20navi = "dashboard-njgdbus sunxi-mali"
+
+

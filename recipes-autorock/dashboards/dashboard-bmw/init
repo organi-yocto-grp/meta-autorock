@@ -1,7 +1,0 @@
-DAEMON=/usr/bin/bmw
-DAEMONDIR=/usr/share/dashboard-bmw
-DAEMONARGS="-platform eglfs"
-DAEMONENV="
-QT_QPA_EGLFS_HIDECURSOR=1 
-QT_QPA_EGLFS_DISABLE_INPUT=1
-"

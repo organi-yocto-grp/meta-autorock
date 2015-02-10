@@ -1,4 +1,4 @@
-require qmake5-static-path.inc
+inherit qmake5-static-path
 
 EXTRA_OEMAKE = " \
     MAKEFLAGS='${PARALLEL_MAKE}' \
@@ -6,6 +6,33 @@ EXTRA_OEMAKE = " \
 
 do_install() {
 	oe_runmake install INSTALL_ROOT=${D}
+}
+
+SEPB = "${WORKDIR}/build"
+B = "${SEPB}"
+
+do_populate_sysroot[sstate-outputdirs] = "${STAGING_DIR}"
+
+sysroot_stage_dirs_append() {
+    # $to is 2nd parameter passed to sysroot_stage_dir, e.g. ${SYSROOT_DESTDIR} passed from sysroot_stage_all
+	cp -ra ${D}/${STAGING_DIR}/* $to
+    rm -rf $to/${MACHINE}/${OE_QMAKE_PATH_LIBS}/fonts
+}
+
+python perform_packagecopy_append () {
+    pkgdest = d.getVar('PKGD', True)
+    staging_dir_target = d.getVar('STAGING_DIR_TARGET', True)
+    prefix = d.getVar('prefix', True)
+    rmpaths = os.listdir(pkgdest)
+    # move out target files
+    os.rename(pkgdest + staging_dir_target + prefix, pkgdest + prefix)
+    # remove host files
+    for path in rmpaths:
+        rmpath = os.path.join(pkgdest, path)
+        if os.path.isdir(rmpath):
+            bb.utils.prunedir(rmpath)
+        else:
+            os.remove(rmpath)
 }
 
 PACKAGES =. "${PN}-qmlplugins-dbg ${PN}-tools-dbg ${PN}-plugins-dbg ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-mkspecs ${PN}-examples-dev ${PN}-examples-staticdev ${PN}-examples-dbg ${PN}-examples "
