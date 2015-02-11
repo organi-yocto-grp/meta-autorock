@@ -1,6 +1,10 @@
 require qt5-static-${QT_VERSION}.inc
 
-SRC_URI += "git://git@git.autorock.com/qt/qtbase.git;branch=${SRCBRANCH};protocol=ssh"
+SRC_URI += "git://git@git.autorock.com/qt/qtbase.git;branch=${SRCBRANCH};protocol=ssh \
+	file://qtquickcompiler \
+	file://qtquickcompiler.prf \
+	file://libQt5Core.so.${QT_VERSION} \
+"
 
 SRCBRANCH = "v${QT_VERSION}"
 SRCREV = "${AUTOREV}"
@@ -110,4 +114,14 @@ do_configure() {
 		-device-option OE_QMAKE_CXXFLAGS="" \
 		-device-option EGLFS_PLATFORM_HOOKS_SOURCES="${EGLFS_SOURCE}" \
 		${QT_CONFIG_FLAGS}
+}
+
+do_install_append() {
+	install -m 755 ${WORKDIR}/qtquickcompiler ${D}${OE_QMAKE_PATH_HOST_BINS}
+	install -m 644 ${WORKDIR}/qtquickcompiler.prf ${D}${OE_QMAKE_PATH_HOST_DATA}/mkspecs/features
+	install -m 755 ${WORKDIR}/libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}
+	QTVERSION=${QT_VERSION}
+	ln -snf libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libQt5Core.so.${QTVERSION%.*}
+	ln -snf libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libQt5Core.so.${QTVERSION%%.*}
+	ln -snf libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libQt5Core.so
 }

@@ -16,7 +16,16 @@ PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
+
+DEPENDS = "qtdeclarative-static qtserialport-static"
+
+RDEPENDS_${PN} = ""
+
 inherit qmake5-static
+
+do_patch() {
+	sed -i 's/#CONFIG += qtquickcompiler/CONFIG += qtquickcompiler/' ${S}/njgdbus.pro
+}
 
 do_install() {
 	install -d ${D}${bindir}
@@ -28,8 +37,3 @@ do_install() {
 
 FILES_${PN}-dbg += "${datadir}/${PN}/.debug"
 FILES_${PN} += "${bindir} ${libdir}"
-
-DEPENDS = "qtdeclarative-static qtserialport-static"
-
-RDEPENDS_${PN} = ""
-

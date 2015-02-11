@@ -16,6 +16,10 @@ PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
+DEPENDS = "qtgraphicaleffects-static"
+
+RDEPENDS_${PN} = ""
+
 inherit qmake5-static
 
 do_install() {
@@ -31,8 +35,3 @@ do_install() {
 
 FILES_${PN}-dbg += "${datadir}/${PN}/.debug"
 FILES_${PN} += "${bindir} ${datadir} ${libdir}"
-
-DEPENDS = "qtgraphicaleffects-static"
-
-RDEPENDS_${PN} = ""
-
