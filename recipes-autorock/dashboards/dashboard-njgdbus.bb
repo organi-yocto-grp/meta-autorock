@@ -1,7 +1,8 @@
 require dashboard.inc
 SUMMARY = "NJGDBUS dashboard application"
 
-SRC_URI = "git://git@git.autorock.com/njgdbus-dashboard/dashboard.git;branch=${SRCBRANCH};protocol=ssh \
+SRC_URI += "git://git@git.autorock.com/njgdbus-dashboard/dashboard.git;branch=${SRCBRANCH};protocol=ssh \
+		file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
 SRCBRANCH = "master"
@@ -14,13 +15,8 @@ DEPENDS += "qtdeclarative-static qtserialport-static"
 
 RDEPENDS_${PN} = ""
 
-do_patch() {
-	sed -i 's/#CONFIG += qtquickcompiler/CONFIG += qtquickcompiler/' ${S}/njgdbus.pro
-}
-
-do_install() {
-	install -d ${D}${bindir}
-	install -m 0755 ${B}/bin/njgdbus ${D}${bindir}
+do_install_append() {
+	install -m 0755 ${B}/bin/njgdbus ${D}/startup/run
 
 	install -d ${D}${libdir}
 	cp -a ${S}/fonts ${D}${libdir}

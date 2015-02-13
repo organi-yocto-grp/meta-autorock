@@ -8,5 +8,13 @@ S = "${WORKDIR}/git"
 
 inherit qmake5-static
 
-FILES_${PN}-dbg += "${datadir}/${PN}/.debug"
-FILES_${PN} += "${bindir} ${libdir}"
+SRC_URI += "file://qmldir"
+
+do_install() {
+	# for static linked app fail to find qtquick
+	install -d ${D}/startup/QtQuick.2
+	install -m 644 ${WORKDIR}/qmldir ${D}/startup/QtQuick.2
+}
+
+FILES_${PN}-dbg += "/startup/.debug"
+FILES_${PN} += "/startup ${libdir} ${datadir}"

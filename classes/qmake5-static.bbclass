@@ -1,7 +1,7 @@
 inherit qmake5-static-path
 
 # for binary qtquickcompiler to find icu libs
-DEPENDS += "icu-native"
+DEPENDS += "icu-native emutils"
 
 do_configure() {
 	${OE_QMAKE_PATH_HOST_BINS}/qmake `ls ${S}/*.pro`
