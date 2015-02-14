@@ -108,10 +108,11 @@ do_configure() {
 		-hostdatadir ${OE_QMAKE_PATH_HOST_DATA} \
 		-extprefix ${STAGING_DIR_TARGET}/${OE_QMAKE_PATH_PREFIX} \
 		-device oe \
-		-device-option COMPILER_FLAGS="${TARGET_CC_ARCH}" \
 		-device-option CROSS_COMPILE=${TARGET_PREFIX} \
+		-device-option COMPILER_FLAGS="${TARGET_CC_ARCH}" \
 		-device-option OE_QMAKE_CFLAGS="" \
 		-device-option OE_QMAKE_CXXFLAGS="" \
+		-device-option OE_QMAKE_LFLAGS="${TARGET_CC_ARCH}" \
 		-device-option EGLFS_PLATFORM_HOOKS_SOURCES="${EGLFS_SOURCE}" \
 		${QT_CONFIG_FLAGS}
 }
