@@ -81,7 +81,10 @@ QT_CONFIG_FLAGS += " \
     ${EXTRA_OECONF} \
 "
 
+EGLFS_SOURCE_imx6 = "${S}/mkspecs/devices/linux-imx6-g++/qeglfshooks_imx6.cpp"
 EGLFS_SOURCE_a20navi = "${S}/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp"
+
+EXTRA_COMPILER_FLAGS ?= ""
 
 do_configure() {
 	${S}/configure  -v \
@@ -109,7 +112,7 @@ do_configure() {
 		-extprefix ${STAGING_DIR_TARGET}/${OE_QMAKE_PATH_PREFIX} \
 		-device oe \
 		-device-option CROSS_COMPILE=${TARGET_PREFIX} \
-		-device-option COMPILER_FLAGS="${TARGET_CC_ARCH}" \
+		-device-option COMPILER_FLAGS="${TARGET_CC_ARCH} ${EXTRA_COMPILER_FLAGS}" \
 		-device-option OE_QMAKE_CFLAGS="" \
 		-device-option OE_QMAKE_CXXFLAGS="" \
 		-device-option OE_QMAKE_LFLAGS="${TARGET_CC_ARCH}" \
