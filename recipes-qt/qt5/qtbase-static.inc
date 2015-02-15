@@ -81,7 +81,7 @@ QT_CONFIG_FLAGS += " \
     ${EXTRA_OECONF} \
 "
 
-EGLFS_SOURCE_imx6 = "${S}/mkspecs/devices/linux-imx6-g++/qeglfshooks_imx6.cpp"
+EGLFS_SOURCE_mx6 = "${S}/mkspecs/devices/linux-imx6-g++/qeglfshooks_imx6.cpp"
 EGLFS_SOURCE_a20navi = "${S}/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp"
 
 EXTRA_COMPILER_FLAGS ?= ""
