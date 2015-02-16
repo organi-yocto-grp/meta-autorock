@@ -11,8 +11,6 @@ inherit qmake5-static
 SRC_URI += "file://qmldir"
 
 do_install() {
-	install -d ${D}/dev
-	install -d ${D}/tmp
 	# for static linked app fail to find qtquick
 	install -d ${D}/startup/QtQuick.2
 	install -m 644 ${WORKDIR}/qmldir ${D}/startup/QtQuick.2
