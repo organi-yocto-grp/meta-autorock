@@ -85,6 +85,9 @@ EGLFS_SOURCE_mx6 = "${S}/mkspecs/devices/linux-imx6-g++/qeglfshooks_imx6.cpp"
 EGLFS_SOURCE_a20navi = "${S}/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp"
 
 EXTRA_COMPILER_FLAGS ?= ""
+EXTRA_LINKER_FLAGS ?= ""
+COMPILER_FLAGS = "${TARGET_CC_ARCH} -mthumb ${EXTRA_COMPILER_FLAGS}"
+LINKER_FLAGS = "${TARGET_CC_ARCH} -mthumb -static-libstdc++ ${EXTRA_LINKER_FLAGS}"
 
 do_configure() {
 	${S}/configure  -v \
@@ -112,10 +115,10 @@ do_configure() {
 		-extprefix ${STAGING_DIR_TARGET}/${OE_QMAKE_PATH_PREFIX} \
 		-device oe \
 		-device-option CROSS_COMPILE=${TARGET_PREFIX} \
-		-device-option COMPILER_FLAGS="${TARGET_CC_ARCH} ${EXTRA_COMPILER_FLAGS}" \
+		-device-option COMPILER_FLAGS="${COMPILER_FLAGS}" \
 		-device-option OE_QMAKE_CFLAGS="" \
 		-device-option OE_QMAKE_CXXFLAGS="" \
-		-device-option OE_QMAKE_LFLAGS="${TARGET_CC_ARCH}" \
+		-device-option OE_QMAKE_LFLAGS="${LINKER_FLAGS}" \
 		-device-option EGLFS_PLATFORM_HOOKS_SOURCES="${EGLFS_SOURCE}" \
 		${QT_CONFIG_FLAGS}
 }
