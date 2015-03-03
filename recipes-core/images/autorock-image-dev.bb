@@ -4,9 +4,16 @@ IMAGE_FEATURES += "ssh-server-openssh package-management"
 
 NO_RECOMMENDATIONS = "1"
 
-IMAGE_INSTALL += "qtbase-plugins qtdeclarative-qmlplugins qtgraphicaleffects-qmlplugins qtbase-fonts qtserialport"
+IMAGE_INSTALL += " \
+	qtbase-plugins  qtbase-fonts \
+	qtdeclarative-qmlplugins \
+	qtgraphicaleffects-qmlplugins \
+	qtserialport \
+	qtquickcontrols-qmlplugins \
+"
 IMAGE_INSTALL += "packagegroup-qt5-qtcreator-debug"
-IMAGE_INSTALL += "dosfstools e2fsprogs-mke2fs"
+IMAGE_INSTALL += "dosfstools e2fsprogs e2fsprogs-mke2fs"
+IMAGE_INSTALL += "mtd-utils mtd-utils-ubifs"
 IMAGE_INSTALL += "memtester"
 
 OPKG_BUILD_MACHINE ?= "${MACHINE}"
