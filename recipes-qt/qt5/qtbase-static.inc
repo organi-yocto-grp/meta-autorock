@@ -1,16 +1,13 @@
 require qt5-static-${QT_VERSION}.inc
 
-SRC_URI += "git://git@git.autorock.com/qt/qtbase.git;branch=${SRCBRANCH};protocol=ssh \
+QT_MODULE = "qtbase"
+
+SRC_URI += " \
+	file://0001-enable-yocto-build.patch \
 	file://qtquickcompiler \
 	file://qtquickcompiler.prf \
 	file://libQt5Core.so.${QT_VERSION} \
 "
-
-SRCBRANCH = "v${QT_VERSION}"
-SRCREV = "${AUTOREV}"
-PV = "${QT_VERSION}+git${SRCPV}"
-
-S = "${WORKDIR}/git"
 
 PACKAGECONFIG[release] = "-release,-debug"
 PACKAGECONFIG[developer] = "-developer-build"

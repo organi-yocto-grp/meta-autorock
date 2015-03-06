@@ -1,0 +1,65 @@
+From 861f002e537ba986c77a97fb428714a938811028 Mon Sep 17 00:00:00 2001
+From: Qiang Yu <yuq825@gmail.com>
+Date: Fri, 6 Mar 2015 10:56:04 +0800
+Subject: [PATCH 1/2] enable yocto build 1. remove system compile variable
+ import in configure which will cause configure fail 2. add linux-oe-g++
+ device for yocto choose as build platform
+
+---
+ configure                                    | 14 --------------
+ mkspecs/devices/linux-oe-g++/qmake.conf      |  9 +++++++++
+ mkspecs/devices/linux-oe-g++/qplatformdefs.h |  1 +
+ 3 files changed, 10 insertions(+), 14 deletions(-)
+ create mode 100644 mkspecs/devices/linux-oe-g++/qmake.conf
+ create mode 100644 mkspecs/devices/linux-oe-g++/qplatformdefs.h
+
+diff --git a/configure b/configure
+index 5ad29bb..b399964 100755
+--- a/configure
++++ b/configure
+@@ -542,20 +542,6 @@ fi
+ #-------------------------------------------------------------------------------
+ 
+ SYSTEM_VARIABLES="RANLIB STRIP OBJDUMP LD CC CXX CFLAGS CXXFLAGS LDFLAGS"
+-for varname in $SYSTEM_VARIABLES; do
+-    qmakevarname="${varname}"
+-    # use LDFLAGS for autoconf compat, but qmake uses QMAKE_LFLAGS
+-    if [ "${varname}" = "LDFLAGS" ]; then
+-        qmakevarname="LFLAGS"
+-    elif [ "${varname}" = "LD" ]; then
+-        qmakevarname="LINK"
+-    fi
+-    cmd=`echo \
+-'if [ -n "\$'${varname}'" ]; then
+-    QMakeVar set QMAKE_'${qmakevarname}' "\$'${varname}'"
+-fi'`
+-    eval "$cmd"
+-done
+ # Use CC/CXX to run config.tests
+ mkdir -p "$outpath/config.tests"
+ rm -f "$outpath/config.tests/.qmake.cache"
+diff --git a/mkspecs/devices/linux-oe-g++/qmake.conf b/mkspecs/devices/linux-oe-g++/qmake.conf
+new file mode 100644
+index 0000000..dfafa84
+--- /dev/null
++++ b/mkspecs/devices/linux-oe-g++/qmake.conf
+@@ -0,0 +1,9 @@
++include(../common/linux_device_pre.conf)
++
++QMAKE_CFLAGS       += $${OE_QMAKE_CFLAGS}
++QMAKE_CXXFLAGS     += $${OE_QMAKE_CXXFLAGS}
++QMAKE_LFLAGS       += $${OE_QMAKE_LFLAGS}
++
++include(../common/linux_device_post.conf)
++
++load(qt_config)
+diff --git a/mkspecs/devices/linux-oe-g++/qplatformdefs.h b/mkspecs/devices/linux-oe-g++/qplatformdefs.h
+new file mode 100644
+index 0000000..99e9a27
+--- /dev/null
++++ b/mkspecs/devices/linux-oe-g++/qplatformdefs.h
+@@ -0,0 +1 @@
++#include "../../linux-g++/qplatformdefs.h"
+-- 
+1.9.1
+
