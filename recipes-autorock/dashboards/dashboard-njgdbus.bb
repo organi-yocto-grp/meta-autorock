@@ -6,8 +6,8 @@ SRC_URI += "git://git@git.autorock.com/njgdbus-dashboard/dashboard.git;branch=${
 "
 
 SRCBRANCH = "master"
-SRCREV = "9397b315a6368b3f8659ce4756ce7b03501f0b77"
-PV = "1.0+git${SRCPV}"
+SRCREV = "743d5fdf0f404798b75b7f415b47913d1e491b94"
+PV = "1.1+git${SRCPV}"
 PR = "r0"
 
 DEPENDS += "qtdeclarative-static qtserialport-static"
