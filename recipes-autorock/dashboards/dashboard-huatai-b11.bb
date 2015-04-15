@@ -10,11 +10,12 @@ SRCREV = "2b274220679d7e0cfdbd0a9093dd517c7b41c700"
 PV = "1.0+git${SRCPV}"
 PR = "r0"
 
-DEPENDS += "qtdeclarative-static qtserialport-static"
+DEPENDS += "qtdeclarative-static qtserialport-static qtgraphicaleffects-static"
 
-RDEPENDS_${PN} = ""
+RDEPENDS_${PN} = "qtdeclarative-static-qmlplugins qtgraphicaleffects-static-qmlplugins"
 
-do_install_append() {
+do_install() {
+	install -d ${D}/startup
 	install -m 0755 ${B}/bin/huatai-b11 ${D}/startup/run
 	cp -a ${S}/3ds ${D}/startup
 

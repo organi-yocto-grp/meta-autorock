@@ -12,9 +12,10 @@ PV = "0+git${SRCPV}"
 
 DEPENDS += "qtgraphicaleffects-static"
 
-RDEPENDS_${PN} = ""
+RDEPENDS_${PN} = "qtdeclarative-static-qmlplugins qtgraphicaleffects-static-qmlplugins"
 
-do_install_append() {
+do_install() {
+	install -d ${D}/startup
 	install -m 0755 ${B}/bin/bmw ${D}/startup/run
 
 	install -d ${D}${datadir}/${PN}

@@ -12,9 +12,10 @@ PR = "r0"
 
 DEPENDS += "qtdeclarative-static qtserialport-static"
 
-RDEPENDS_${PN} = ""
+RDEPENDS_${PN} = "qtdeclarative-static-qmlplugins"
 
-do_install_append() {
+do_install() {
+	install -d ${D}/startup
 	install -m 0755 ${B}/bin/njgdbus ${D}/startup/run
 
 	install -d ${D}${libdir}
