@@ -7,8 +7,8 @@ SRC_URI += " \
 "
 
 SRCBRANCH = "master"
-SRCREV = "2b274220679d7e0cfdbd0a9093dd517c7b41c700"
-PV = "1.0+git${SRCPV}"
+SRCREV = "0454dde145d4244e7cefdfb067adf7278a4b7d80"
+PV = "1.1+git${SRCPV}"
 PR = "r0"
 
 DEPENDS += " \
@@ -24,7 +24,6 @@ RDEPENDS_${PN} = " \
 do_install() {
 	install -d ${D}/startup
 	install -m 0755 ${B}/bin/huatai-b11 ${D}/startup/run
-	cp -a ${S}/3ds ${D}/startup
 
 	install -d ${D}${libdir}
 	cp -a ${S}/fonts ${D}${libdir}

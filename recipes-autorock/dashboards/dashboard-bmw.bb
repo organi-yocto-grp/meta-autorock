@@ -17,9 +17,7 @@ RDEPENDS_${PN} = "qtdeclarative-static-qmlplugins qtgraphicaleffects-static-qmlp
 do_install() {
 	install -d ${D}/startup
 	install -m 0755 ${B}/bin/bmw ${D}/startup/run
-
-	install -d ${D}${datadir}/${PN}
-	cp -a ${S}/3ds ${D}${datadir}/${PN}
+	cp -a ${S}/3ds ${D}/
 
 	install -d ${D}${libdir}
 	cp -a ${S}/fonts ${D}${libdir}
