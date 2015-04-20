@@ -2,9 +2,9 @@ DESCRIPTION = "EMUTILS"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-SRCREV = "1aeb53ad944ad7d08abf2fdaa59cf0d58038eb99"
+SRCREV = "661636a4c2acdb67524f28a339249cd79ced719a"
 SRCBRANCH = "master"
-PV = "1.0+git${SRCPV}"
+PV = "1.1+git${SRCPV}"
 PR = "r0"
 
 SRC_URI = "git://git@git.autorock.com/sunxi/utils.git;branch=${SRCBRANCH};protocol=ssh"
