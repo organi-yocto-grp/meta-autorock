@@ -6,7 +6,7 @@ IMAGE_FEATURES += "package-management"
 
 IMAGE_INSTALL += "memtester"
 
-OPKG_BUILD_MACHINE ?= "${MACHINE}"
+OPKG_BUILD_MACHINE ?= "${MACHINE_CLASS}"
 OPKG_DOWNLOAD_SERVER ?= "yocto.autorock.com"
 OPKG_BUILD_FEATURE ?= "dev"
 
