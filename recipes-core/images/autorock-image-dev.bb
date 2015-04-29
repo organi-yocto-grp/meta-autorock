@@ -13,3 +13,4 @@ IMAGE_INSTALL += " \
 IMAGE_INSTALL += "packagegroup-qt5-qtcreator-debug"
 IMAGE_INSTALL += "dosfstools e2fsprogs e2fsprogs-mke2fs"
 IMAGE_INSTALL += "mtd-utils mtd-utils-ubifs"
+IMAGE_INSTALL += "glitem-qmlplugins"
