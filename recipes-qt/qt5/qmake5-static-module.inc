@@ -1,4 +1,5 @@
 require qmake5-static.inc
+inherit qmake5-static-base
 
 DEPENDS += "qtbase-static"
 
