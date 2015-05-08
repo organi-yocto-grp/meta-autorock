@@ -1,4 +1,5 @@
 inherit qmake5-static-path
+inherit qmake5-static-base
 
 # for binary qtquickcompiler to find icu libs
 DEPENDS += "icu-native emutils"
