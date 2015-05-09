@@ -1,0 +1,61 @@
+commit 54b42a324a01257ce59a59ce365c24054617d043
+Author: threewater <threewaterL@163.com>
+Date:   Sun Feb 8 14:39:11 2015 +0800
+
+    eglInitialize before create windows to reduce screen black time.
+
+diff --git qtbase.orig/src/platformsupport/eglconvenience/qeglplatformintegration.cpp qtbase/src/platformsupport/eglconvenience/qeglplatformintegration.cpp
+index 7d05b54..f172aa6 100644
+--- qtbase.orig/src/platformsupport/eglconvenience/qeglplatformintegration.cpp
++++ qtbase/src/platformsupport/eglconvenience/qeglplatformintegration.cpp
+@@ -106,10 +106,6 @@ void QEGLPlatformIntegration::initialize()
+     if (m_display == EGL_NO_DISPLAY)
+         qFatal("Could not open egl display");
+ 
+-    EGLint major, minor;
+-    if (!eglInitialize(m_display, &major, &minor))
+-        qFatal("Could not initialize egl display");
+-
+     m_screen = createScreen();
+     screenAdded(m_screen);
+ 
+@@ -118,6 +114,19 @@ void QEGLPlatformIntegration::initialize()
+     m_vtHandler.reset(new QFbVtHandler);
+ }
+ 
++void QEGLPlatformIntegration::create_initialize() const
++{
++    static int once=0;
++    if(once)
++        return;
++
++    EGLint major, minor;
++    if (!eglInitialize(m_display, &major, &minor))
++        qFatal("Could not initialize egl display");
++
++    once++;
++}
++
+ QAbstractEventDispatcher *QEGLPlatformIntegration::createEventDispatcher() const
+ {
+     return createUnixEventDispatcher();
+@@ -141,6 +150,7 @@ QPlatformBackingStore *QEGLPlatformIntegration::createPlatformBackingStore(QWind
+ QPlatformWindow *QEGLPlatformIntegration::createPlatformWindow(QWindow *window) const
+ {
+     QWindowSystemInterface::flushWindowSystemEvents();
++    create_initialize();
+     QEGLPlatformWindow *w = createWindow(window);
+     w->create();
+     if (window->type() != Qt::ToolTip)
+diff --git qtbase.orig/src/platformsupport/eglconvenience/qeglplatformintegration_p.h qtbase/src/platformsupport/eglconvenience/qeglplatformintegration_p.h
+index 4d7adce..78f3082 100644
+--- qtbase.orig/src/platformsupport/eglconvenience/qeglplatformintegration_p.h
++++ qtbase/src/platformsupport/eglconvenience/qeglplatformintegration_p.h
+@@ -65,6 +65,7 @@ public:
+     ~QEGLPlatformIntegration();
+ 
+     void initialize() Q_DECL_OVERRIDE;
++    void create_initialize() const;
+ 
+     QEGLPlatformScreen *screen() const { return m_screen; }
+     EGLDisplay display() const { return m_display; }
