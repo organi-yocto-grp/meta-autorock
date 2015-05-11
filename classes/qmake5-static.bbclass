@@ -1,4 +1,3 @@
-inherit qmake5-static-path
 inherit qmake5-static-base
 
 # for binary qtquickcompiler to find icu libs
@@ -12,10 +11,6 @@ do_configure_prepend() {
 do_configure() {
 	${OE_QMAKE_PATH_HOST_BINS}/qmake `ls ${S}/*.pro`
 }
-
-EXTRA_OEMAKE = " \
-    MAKEFLAGS='${PARALLEL_MAKE}' \
-"
 
 do_compile_prepend() {
 	# for binary qtquickcompiler to find libQt5Core.so.5

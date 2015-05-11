@@ -1,8 +1,4 @@
-inherit qmake5-static-path
-
-EXTRA_OEMAKE = " \
-    MAKEFLAGS='${PARALLEL_MAKE}' \
-"
+inherit qmake5-static-base
 
 do_install() {
 	oe_runmake install INSTALL_ROOT=${D}
