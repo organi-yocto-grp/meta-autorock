@@ -10,5 +10,3 @@ inherit qmake5-static
 
 FILES_${PN}-dbg += "/startup/.debug"
 FILES_${PN} += "/"
-
-PACKAGE_ARCH = "${MACHINE_SOCARCH}"
