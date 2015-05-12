@@ -4,6 +4,7 @@ QT_MODULE = "qtbase"
 
 SRC_URI += " \
 	file://0001-enable-yocto-build.patch \
+	file://0004-always-use-static-zlib.patch \
 	file://qtquickcompiler \
 	file://qtquickcompiler.prf \
 	file://libQt5Core.so.${QT_VERSION} \

@@ -1,0 +1,24 @@
+From b31ef970575ed88de106abe32505e625fd6eee09 Mon Sep 17 00:00:00 2001
+From: Qiang Yu <yuq825@gmail.com>
+Date: Tue, 12 May 2015 11:31:10 +0800
+Subject: [PATCH 4/4] always use static zlib
+
+---
+ src/3rdparty/zlib_dependency.pri | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/3rdparty/zlib_dependency.pri b/src/3rdparty/zlib_dependency.pri
+index 0bcb9f9..ca9b384 100644
+--- a/src/3rdparty/zlib_dependency.pri
++++ b/src/3rdparty/zlib_dependency.pri
+@@ -1,6 +1,6 @@
+ # zlib dependency satisfied by bundled 3rd party zlib or system zlib
+ contains(QT_CONFIG, system-zlib) {
+-    if(unix|mingw):LIBS_PRIVATE += -lz
++    if(unix|mingw):LIBS_PRIVATE += -Wl,-Bstatic -lz -Wl,-Bdynamic
+     else {
+         isEmpty(ZLIB_LIBS): LIBS += zdll.lib
+         else: LIBS += $$ZLIB_LIBS
+-- 
+1.9.1
+
