@@ -1,52 +1,53 @@
-From c08ea81655949e37a3ab9ed39fa581fab1002b36 Mon Sep 17 00:00:00 2001
-From: liuxincheng <liuxincheng@autorock.com.cn>
-Date: Tue, 12 May 2015 13:48:21 +0800
+From e5ce2beb7363940f209fcee21791002af821e803 Mon Sep 17 00:00:00 2001
+From: chenzilin <chenzilin115@gmail.com>
+Date: Fri, 15 May 2015 17:12:24 +0800
 Subject: [PATCH] enable initfs and qtquickcompiler
 
 ---
- havalH6.pro  | 5 ++++-
- src/main.cpp | 4 +++-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ havalH6.pro  | 4 ++++
+ src/main.cpp | 6 +++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/havalH6.pro b/havalH6.pro
-index fb24244..4a530ca 100644
+index fb24244..a0021a6 100644
 --- a/havalH6.pro
 +++ b/havalH6.pro
-@@ -9,7 +9,10 @@ TEMPLATE = app
- #DEFINES += CAN_DEBUG
- #DEFINES += CAN_TIMER
+@@ -11,6 +11,10 @@ TEMPLATE = app
  #DEFINES += DEBUG_INFO_TO_FILE
--#CONFIG += qtquickcompiler
-+
+ #CONFIG += qtquickcompiler
+ 
 +DEFINES += INITROOT_STARTUP
 +LIBS += -linitroot_startup
 +CONFIG += qtquickcompiler
- 
++
  CONFIG(release, debug|release) {
  #        DEFINES += QT_NO_DEBUG_OUTPUT
+ }
 diff --git a/src/main.cpp b/src/main.cpp
-index 8b5be9c..e25bf5c 100644
+index 8b5be9c..1b8e3f7 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
-@@ -13,6 +13,7 @@
- #include <QGuiApplication>
- #include <QCommandLineParser>
- #include <QQmlApplicationEngine>
-+#include <initroot_startup.h>
- 
+@@ -17,6 +17,8 @@
  #include "ring.h"
  #include <carstatus.h>
-@@ -110,11 +111,12 @@ int server_main(int argc, char *argv[])
+ 
++#include <initroot_startup.h>
++
+ static pid_t pid;
+ static bool exit_loop = true;
+ 
+@@ -110,11 +112,13 @@ int server_main(int argc, char *argv[])
  	viewer.show();
  	qDebug() << "8.After Show app: " << QTime::currentTime();
  
 -	return app.exec();
-+	return startup_end(app.exec);
++    return startup_end(app.exec);
  }
  
  int main(int argc, char **argv)
  {
-+	startup_begin();
++    startup_begin();
++
  	qDebug() << "1.enter main process of njgdbus: " << QTime::currentTime();
  
  	if (signal(SIGINT, signal_handler) == SIG_ERR ||
