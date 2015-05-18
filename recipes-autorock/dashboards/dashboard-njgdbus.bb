@@ -1,13 +1,11 @@
 require dashboard.inc
 SUMMARY = "NJGDBUS dashboard application"
 
-SRC_URI += "git://git@git.autorock.com/njgdbus-dashboard/dashboard.git;branch=${SRCBRANCH};protocol=ssh \
+SRC_URI += "git://git@git.autorock.com/njgdbus-dashboard/dashboard.git;tag=v${PV};protocol=ssh \
 		file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
-SRCBRANCH = "master"
-SRCREV = "3898d99b921a85d1b3ef944ccd91f3129ffdc8d8"
-PV = "1.3+git${SRCPV}"
+PV = "1.0.2"
 PR = "r0"
 
 DEPENDS += "qtdeclarative-static qtserialport-static"
