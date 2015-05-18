@@ -1,0 +1,55 @@
+From cbbbcd60c1358baa3073960769ae299e3ce429b3 Mon Sep 17 00:00:00 2001
+From: liuxincheng <liuxincheng@autorock.com.cn>
+Date: Mon, 18 May 2015 11:03:15 +0800
+Subject: [PATCH] enable initfs and qtquickcompiler
+
+---
+ car3d.pro | 5 +++++
+ main.cpp  | 4 +++-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/car3d.pro b/car3d.pro
+index cc4d1b4..d649d0a 100644
+--- a/car3d.pro
++++ b/car3d.pro
+@@ -7,6 +7,11 @@ TEMPLATE = app
+ 
+ CONFIG += c++11 link_pkgconfig
+ 
++DEFINES += INITROOT_STARTUP
++LIBS += -linitroot_startup
++CONFIG += qtquickcompiler
++
++
+ # Sources and Headers
+ SOURCES += main.cpp
+ 
+diff --git a/main.cpp b/main.cpp
+index 718d296..7bc4d34 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -5,6 +5,7 @@
+ #include <wait.h>
+ #include <unistd.h>
+ #include <signal.h>
++#include <initroot_startup.h>
+ 
+ #define MSAA 1
+ 
+@@ -42,11 +43,12 @@ int server_main(int argc, char **argv)
+     QQmlApplicationEngine engine;
+     engine.load(QUrl(QStringLiteral("qrc:/qml/qml/main.qml")));
+ 
+-    return app.exec();
++    return startup_end(app.exec);
+ }
+ 
+ int main(int argc, char **argv)
+ {
++    startup_begin();
+     if (signal(SIGINT, signal_handler) == SIG_ERR ||
+             signal(SIGTERM, signal_handler) == SIG_ERR) {
+         qDebug() << "main process register signal handler fail\n";
+-- 
+1.9.1
+
