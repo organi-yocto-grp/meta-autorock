@@ -5,7 +5,7 @@ SRC_URI += "git://git@git.autorock.com/njgdbus-dashboard/dashboard.git;tag=v${PV
 		file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
-PV = "1.0.3"
+PV = "1.0.4"
 PR = "r0"
 
 DEPENDS += "qtdeclarative-static qtserialport-static"
