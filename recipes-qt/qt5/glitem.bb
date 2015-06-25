@@ -6,9 +6,9 @@ require recipes-qt/qt5/qt5.inc
 
 DEPENDS += "qtdeclarative assimp"
 
-SRCREV = "ba967e7c262a30f7cba70e791fa61e0775920537"
+SRCREV = "3e542e1be2315bf32fc641b989e9fb9cceb94f5c"
 SRCBRANCH = "master"
-PV = "1.0+git${SRCPV}"
+PV = "1.1+git${SRCPV}"
 PR = "r0"
 
 SRC_URI = "git://git@gitlab.autorock.com/qt/glitem.git;branch=${SRCBRANCH};protocol=ssh"
