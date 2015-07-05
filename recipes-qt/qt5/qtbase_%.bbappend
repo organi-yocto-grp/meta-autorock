@@ -4,10 +4,10 @@ PACKAGECONFIG_DEFAULT += "accessibility"
 PACKAGECONFIG_remove = " \
 glib xcb dbus udev alsa pulseaudio tslib icu examples openssl \
 "
-#PACKAGECONFIG_remove += "widgets"
+
 QT_CONFIG_FLAGS += "-qpa eglfs"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 SRC_URI += "file://eglInitialize_later.patch"
-SRC_URI[md5sum] = "820b0c77ea6d025833de9118842cf405"
-SRC_URI[sha256sum] = "d14e3f3cb5e853aefbb9a58764766f85cbc27e2ac9978c70178c1a60b9de39ea"
+SRC_URI[md5sum] = "67a95eec79ffc4a14f516ad6f3d24c96"
+SRC_URI[sha256sum] = "9fc4f720b8b5a8b8e4a7d45e13ce4d5b86756ad46fb406386637eb2de5fd5a74"
