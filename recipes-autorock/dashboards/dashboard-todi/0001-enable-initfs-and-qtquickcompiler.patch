@@ -1,0 +1,53 @@
+From a84718dccd4b3650ad18cb91c7129666209ff2d0 Mon Sep 17 00:00:00 2001
+From: chenzilin <chenzilin115@gmail.com>
+Date: Fri, 10 Jul 2015 13:58:39 +0800
+Subject: [PATCH] enable initfs and qtquickcompiler
+
+---
+ src/main.cpp | 4 +++-
+ todi.pro     | 3 +++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/src/main.cpp b/src/main.cpp
+index 9ceebff..de89225 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -14,6 +14,7 @@
+ #include <QGuiApplication>
+ #include <QCommandLineParser>
+ #include <QQmlApplicationEngine>
++#include <initroot_startup.h>
+ 
+ #include "ring.h"
+ #include <todi_ui_carstatus.h>
+@@ -68,11 +69,12 @@ int server_main(int argc, char *argv[])
+     viewer.show();
+     qDebug() << "8.after Show app: " << QTime::currentTime();
+ 
+-    return app.exec();
++    return startup_end(app.exec);
+ }
+ 
+ int main(int argc, char **argv)
+ {
++    startup_begin();
+     qDebug() << "1.enter main process of todi: " << QTime::currentTime();
+ 
+     if (signal(SIGINT, signal_handler) == SIG_ERR ||
+diff --git a/todi.pro b/todi.pro
+index f19efbf..b90063e 100644
+--- a/todi.pro
++++ b/todi.pro
+@@ -10,6 +10,9 @@ DEFINES += Todi
+ #DEFINES += DEBUG
+ DEFINES += TIMER_FREQ
+ DEFINES += SERIAL_RECV
++DEFINES += INITROOT_STARTUP
++LIBS += -linitroot_startup
++CONFIG += qtquickcompiler
+ 
+ # Cross Compile
+ cross_compile {
+-- 
+1.9.1
+
