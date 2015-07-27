@@ -6,13 +6,13 @@ SRC_URI += "git://git@gitlab.autorock.com/Todi/05software-core.git;branch=${SRCB
 "
 
 SRCBRANCH = "master"
-SRCREV = "ea31cc5bee82912a06791dc7b939542e391067fa"
-PV = "1.0+git${SRCPV}"
+SRCREV = "6876754abdb5c1fc2192af6a419f1b7dcf76ebb9"
+PV = "1.1+git${SRCPV}"
 PR = "r0"
 
-DEPENDS += "qtdeclarative-static qtserialport-static"
+DEPENDS += "qtdeclarative-static qtserialport-static qtquickcontrols-static qtgraphicaleffects-static"
 
-RDEPENDS_${PN} = "qtdeclarative-static-qmlplugins"
+RDEPENDS_${PN} = "qtdeclarative-static-qmlplugins qtquickcontrols-static-qmlplugins qtgraphicaleffects-static-qmlplugins"
 
 do_install() {
 	install -d ${D}/startup
