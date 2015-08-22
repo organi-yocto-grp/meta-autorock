@@ -8,6 +8,8 @@ PV = "1.0"
 
 SRC_URI = "file://logo.bmp"
 
+S = "${WORKDIR}"
+
 inherit deploy
 
 SPLASH_BIN = "splash-${MACHINE}-${PV}-${PR}-${DATETIME}.bin"

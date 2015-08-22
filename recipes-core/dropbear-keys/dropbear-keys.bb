@@ -7,6 +7,8 @@ SRC_URI += " \
 	file://dropbear_rsa_host_key \
 "
 
+S = "${WORKDIR}"
+
 do_install() {
 	install -d ${D}${sysconfdir}/dropbear
 	install -m 0600 ${WORKDIR}/dropbear_dss_host_key ${D}${sysconfdir}/dropbear

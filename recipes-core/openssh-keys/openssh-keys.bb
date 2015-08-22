@@ -13,6 +13,8 @@ SRC_URI += " \
 	file://ssh_host_ed25519_key.pub \
 "
 
+S = "${WORKDIR}"
+
 do_install() {
 	install -d ${D}${sysconfdir}/ssh
 	install -m 0600 ${WORKDIR}/ssh_host_dsa_key ${D}${sysconfdir}/ssh
