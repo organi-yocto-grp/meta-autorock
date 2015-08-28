@@ -4,7 +4,7 @@ IMAGE_FEATURES += "package-management"
 
 #NO_RECOMMENDATIONS = "1"
 
-IMAGE_INSTALL += "memtester"
+IMAGE_INSTALL += "memtester kmod"
 
 OPKG_BUILD_MACHINE ?= "${MACHINE_CLASS}"
 OPKG_DOWNLOAD_SERVER ?= "yocto.autorock.com"
