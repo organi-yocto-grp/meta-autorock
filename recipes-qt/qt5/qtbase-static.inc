@@ -2,21 +2,17 @@ require qt5-static-${QT_VERSION}.inc
 
 QT_MODULE = "qtbase"
 
-ICU_VERSION = "53.1"
-
 SRC_URI += " \
 	file://0001-enable-yocto-build.patch \
 	file://0004-always-use-static-zlib.patch \
 	file://qtquickcompiler \
 	file://qtquickcompiler.prf \
 	file://libQt5Core.so.${QT_VERSION} \
-	file://libicui18n.so.${ICU_VERSION} \
-	file://libicuuc.so.${ICU_VERSION} \
-	file://libicudata.so.${ICU_VERSION} \
 "
 
 PACKAGECONFIG[release] = "-release,-debug"
 PACKAGECONFIG[developer] = "-developer-build"
+PACKAGECONFIG[sm] = "-sm,-no-sm"
 PACKAGECONFIG[tests] = "-make tests,-nomake tests"
 PACKAGECONFIG[examples] = "-make examples -compile-examples,-nomake examples"
 PACKAGECONFIG[tools] = "-make tools,-nomake tools"
@@ -38,7 +34,7 @@ PACKAGECONFIG[cups] = "-cups,-no-cups,cups"
 PACKAGECONFIG[dbus] = "-dbus,-no-dbus,dbus"
 PACKAGECONFIG[xcb] = "-xcb -xcb-xlib -system-xcb,-no-xcb,libxcb xcb-util-wm xcb-util-image xcb-util-keysyms xcb-util-renderutil"
 PACKAGECONFIG[sql-ibase] = "-sql-ibase,-no-sql-ibase"
-PACKAGECONFIG[sql-mysql] = "-sql-mysql,-no-sql-mysql,mysql"
+PACKAGECONFIG[sql-mysql] = "-sql-mysql,-no-sql-mysql,mysql5"
 PACKAGECONFIG[sql-psql] = "-sql-psql,-no-sql-psql,postgresql"
 PACKAGECONFIG[sql-odbc] = "-sql-odbc,-no-sql-odbc"
 PACKAGECONFIG[sql-oci] = "-sql-oci,-no-sql-oci"
@@ -65,6 +61,7 @@ PACKAGECONFIG[fontconfig] = "-fontconfig,-no-fontconfig,fontconfig"
 PACKAGECONFIG[gtkstyle] = "-gtkstyle,-no-gtkstyle,gtk+"
 PACKAGECONFIG[directfb] = "-directfb,-no-directfb,directfb"
 PACKAGECONFIG[linuxfb] = "-linuxfb,-no-linuxfb"
+PACKAGECONFIG[mitshm] = "-mitshm,-no-mitshm,mitshm"
 PACKAGECONFIG[kms] = "-kms,-no-kms,virtual/mesa virtual/egl"
 PACKAGECONFIG[icu] = "-icu,-no-icu,icu"
 PACKAGECONFIG[udev] = "-libudev,-no-libudev,udev"
@@ -73,6 +70,8 @@ PACKAGECONFIG[alsa] = "-alsa,-no-alsa,alsa-lib"
 PACKAGECONFIG[pulseaudio] = "-pulseaudio,-no-pulseaudio,pulseaudio"
 PACKAGECONFIG[nis] = "-nis,-no-nis"
 PACKAGECONFIG[widgets] = "-widgets,-no-widgets"
+PACKAGECONFIG[libproxy] = "-libproxy,-no-libproxy,libproxy"
+PACKAGECONFIG[libinput] = "-libinput,-no-libinput,libinput"
 
 QT_CONFIG_FLAGS += " \
     -static \
@@ -130,15 +129,8 @@ do_install_append() {
 	install -m 755 ${WORKDIR}/qtquickcompiler ${D}${OE_QMAKE_PATH_HOST_BINS}
 	install -m 644 ${WORKDIR}/qtquickcompiler.prf ${D}${OE_QMAKE_PATH_HOST_DATA}/mkspecs/features
 	install -m 755 ${WORKDIR}/libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}
-	install -m 755 ${WORKDIR}/libicui18n.so.${ICU_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}
-	install -m 755 ${WORKDIR}/libicuuc.so.${ICU_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}
-	install -m 755 ${WORKDIR}/libicudata.so.${ICU_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}
 	QTVERSION=${QT_VERSION}
 	ln -snf libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libQt5Core.so.${QTVERSION%.*}
 	ln -snf libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libQt5Core.so.${QTVERSION%%.*}
 	ln -snf libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libQt5Core.so
-	ICUVERSION=${ICU_VERSION}
-	ln -snf libicui18n.so.${ICU_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libicui18n.so.${ICUVERSION%.*}
-	ln -snf libicuuc.so.${ICU_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libicuuc.so.${ICUVERSION%.*}
-	ln -snf libicudata.so.${ICU_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libicudata.so.${ICUVERSION%.*}
 }

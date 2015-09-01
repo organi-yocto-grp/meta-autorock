@@ -1,7 +1,7 @@
 inherit qmake5-static-base
 
 # for fast boot lib
-DEPENDS += "emutils"
+DEPENDS += "icu-native emutils"
 
 do_configure_prepend() {
 	# for binary qtquickcompiler to find libQt5Core.so.5

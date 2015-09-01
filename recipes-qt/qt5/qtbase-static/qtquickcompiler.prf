@@ -58,21 +58,22 @@ defineReplace(qtQuickCompilerOutputName) {
     name = $$relative_path($$name, $$_PRO_FILE_PWD_)
     name = $$replace(name, \\.qml$, _qml)
     name = $$replace(name, \\.js$, _js)
-    name = $${name}$${first(QMAKE_EXT_CPP)}
     name = $$replace(name,/,_)
     name = $$QTQUICKC_DIR/$${name}
     return($${name})
 }
 
 qtquickcompiler.input = QTQUICK_COMPILER_FILES
-qtquickcompiler.output = ${QMAKE_FUNC_FILE_IN_qtQuickCompilerOutputName}
+qtquickcompiler.output = ${QMAKE_FUNC_FILE_IN_qtQuickCompilerOutputName}$${first(QMAKE_EXT_CPP)}
 qtquickcompiler.commands = $$QTQUICK_COMPILER $$QTQUICK_COMPILER_RESOURCE_FLAGS $$QTQUICK_COMPILER_FLAGS ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+qtquickcompiler.name = qtquickcompiler ${QMAKE_FILE_IN}
 qtquickcompiler.variable_out = GENERATED_SOURCES
 qtquickcompiler.dependency_type = TYPE_C
 
 qtquickcompiler_loader.input = QTQUICK_COMPILER_RESOURCE_FILES
 qtquickcompiler_loader.output = $$QTQUICKC_DIR/qtquickcompiler_loader.cpp
 qtquickcompiler_loader.commands = $$QTQUICK_COMPILER $$QTQUICK_COMPILER_LOADER_FLAGS $$QTQUICK_COMPILER_FLAGS ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+qtquickcompiler_loader.name = qtquickcompiler_loader ${QMAKE_FILE_IN}
 qtquickcompiler_loader.variable_out = SOURCES
 qtquickcompiler_loader.dependency_type = TYPE_C
 qtquickcompiler_loader.CONFIG = combine
