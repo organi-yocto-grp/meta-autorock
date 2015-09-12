@@ -1,7 +1,7 @@
-From b31ef970575ed88de106abe32505e625fd6eee09 Mon Sep 17 00:00:00 2001
-From: Qiang Yu <yuq825@gmail.com>
-Date: Tue, 12 May 2015 11:31:10 +0800
-Subject: [PATCH 4/4] always use static zlib
+From d24f2d7269097c3db9990ae2168670ee21720677 Mon Sep 17 00:00:00 2001
+From: chenzilin <chenzilin115@gmail.com>
+Date: Sat, 29 Aug 2015 18:41:41 +0800
+Subject: [PATCH] always use static zlib
 
 ---
  src/3rdparty/zlib_dependency.pri | 2 +-
