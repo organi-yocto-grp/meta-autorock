@@ -83,9 +83,6 @@ QT_CONFIG_FLAGS += " \
     ${EXTRA_OECONF} \
 "
 
-EGLFS_SOURCE_mx6 = "${S}/mkspecs/devices/linux-imx6-g++/qeglfshooks_imx6.cpp"
-EGLFS_SOURCE_a20navi = "${S}/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp"
-
 EXTRA_COMPILER_FLAGS ?= ""
 EXTRA_LINKER_FLAGS ?= ""
 COMPILER_FLAGS = "${TARGET_CC_ARCH} -mthumb ${EXTRA_COMPILER_FLAGS}"
@@ -121,7 +118,7 @@ do_configure() {
 		-device-option OE_QMAKE_CFLAGS="" \
 		-device-option OE_QMAKE_CXXFLAGS="" \
 		-device-option OE_QMAKE_LFLAGS="${LINKER_FLAGS}" \
-		-device-option EGLFS_PLATFORM_HOOKS_SOURCES="${EGLFS_SOURCE}" \
+		-device-option EGLFS_DEVICE_INTEGRATION="${EGLFS_GPU}" \
 		${QT_CONFIG_FLAGS}
 }
 
