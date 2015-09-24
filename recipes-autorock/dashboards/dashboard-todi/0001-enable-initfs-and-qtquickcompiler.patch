@@ -1,27 +1,26 @@
-From a69260fca56d8bbacd509b681cbee106a1be51e0 Mon Sep 17 00:00:00 2001
+From 53c9a1c7a05f975feabcc7c818a128d0d836bfac Mon Sep 17 00:00:00 2001
 From: chenzilin <chenzilin115@gmail.com>
-Date: Fri, 24 Jul 2015 13:58:54 +0800
+Date: Tue, 22 Sep 2015 14:18:52 +0800
 Subject: [PATCH] enable initfs and qtquickcompiler
 
 ---
  src/main.cpp | 5 ++++-
- todi.pro     | 3 +++
- 2 files changed, 7 insertions(+), 1 deletion(-)
+ todi.pro     | 4 ++++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/src/main.cpp b/src/main.cpp
-index 53f44a0..647d213 100644
+index 53f44a0..477b903 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
-@@ -19,6 +19,8 @@
+@@ -18,6 +18,7 @@
+ #include "ringTex.h"
  #include "ringCut.h"
  #include <todi_ui_carstatus.h>
- 
 +#include <initroot_startup.h>
-+
+ 
  static pid_t pid;
  static bool exit_loop = true;
- 
-@@ -70,11 +72,12 @@ int server_main(int argc, char *argv[])
+@@ -70,11 +71,13 @@ int server_main(int argc, char *argv[])
      viewer.show();
      qDebug() << "8.after Show app: " << QTime::currentTime();
  
@@ -32,23 +31,25 @@ index 53f44a0..647d213 100644
  int main(int argc, char **argv)
  {
 +    startup_begin();
++
      qDebug() << "1.enter main process of todi: " << QTime::currentTime();
  
      if (signal(SIGINT, signal_handler) == SIG_ERR ||
 diff --git a/todi.pro b/todi.pro
-index 154bcf9..26532ed 100644
+index 6a6f55d..09d470f 100644
 --- a/todi.pro
 +++ b/todi.pro
-@@ -9,6 +9,9 @@ TEMPLATE = app
- DEFINES += Todi
+@@ -10,6 +10,10 @@ DEFINES += Todi
  #DEFINES += DEBUG
  DEFINES += TIMER_FREQ
+ 
 +DEFINES += INITROOT_STARTUP
 +LIBS += -linitroot_startup
 +CONFIG += qtquickcompiler
- 
++
  # Cross Compile
  cross_compile {
+     DEFINES += FONTS_PATH
 -- 
 1.9.1
 
