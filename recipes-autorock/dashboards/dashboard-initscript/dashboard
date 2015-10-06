@@ -1,6 +1,6 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:	         dashboard
+# Provides:          dashboard
 # Required-Start:    $local_fs
 # Required-Stop:     $local_fs
 # Default-Start:     S
