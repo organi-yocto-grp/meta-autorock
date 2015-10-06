@@ -2,7 +2,7 @@ require dashboard.inc
 SUMMARY = "NJGDBUS dashboard application"
 
 SRC_URI += "git://git@gitlab.autorock.com/WinterJasmine/dashboard.git;tag=v${PV};protocol=ssh \
-		file://0001-enable-initfs-and-qtquickcompiler.patch \
+	file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
 PV = "1.0.4"

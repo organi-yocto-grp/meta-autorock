@@ -2,7 +2,7 @@ require dashboard.inc
 SUMMARY = "Dashboard application for Project Todi"
 
 SRC_URI += "git://git@gitlab.autorock.com/huatai-dashboard/dashboard-a25.git;branch=${SRCBRANCH};protocol=ssh \
-		file://0001-enable-initfs-and-qtquickcompiler.patch \
+	file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
 SRCBRANCH = "master"

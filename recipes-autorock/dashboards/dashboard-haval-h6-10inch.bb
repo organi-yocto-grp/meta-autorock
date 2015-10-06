@@ -2,7 +2,7 @@ require dashboard.inc
 SUMMARY = "HAVAL-H6 dashboard application for 10 inches"
 
 SRC_URI += "git://git@gitlab.autorock.com/Haval-H6/dashboard-haval-h6-10inch.git;branch=${SRCBRANCH};protocol=ssh \
-		file://0001-enable-initfs-and-qtquickcompiler.patch \
+	file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
 SRCBRANCH = "forshow"
