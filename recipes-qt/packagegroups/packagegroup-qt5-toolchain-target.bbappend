@@ -1,7 +1,4 @@
 RDEPENDS_${PN}_remove += " \
-	qt3d-dev qt3d-mkspecs qt3d-qmlplugins \
-"
-RDEPENDS_${PN}_remove += " \
 	qtlocation-dev qtlocation-mkspecs \
 	qtlocation-plugins qtlocation-qmlplugins \
 "
