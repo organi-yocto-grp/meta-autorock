@@ -5,7 +5,7 @@ SRC_URI += "git://git@gitlab.autorock.com/WinterJasmine/dashboard.git;tag=v${PV}
 		file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
-PV = "1.0.4"
+PV = "1.0.8"
 PR = "r0"
 
 DEPENDS += "qtdeclarative-static qtserialport-static"
