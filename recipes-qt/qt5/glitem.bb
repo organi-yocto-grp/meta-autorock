@@ -6,7 +6,7 @@ require recipes-qt/qt5/qt5.inc
 
 DEPENDS += "qtdeclarative assimp"
 
-SRCREV = "3e542e1be2315bf32fc641b989e9fb9cceb94f5c"
+SRCREV = "e6049e6ad3bdf898d6650850b98a3d621cbeb526"
 SRCBRANCH = "master"
 PV = "1.1+git${SRCPV}"
 PR = "r0"
