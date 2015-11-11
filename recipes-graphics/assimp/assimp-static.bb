@@ -1,20 +1,19 @@
 DESCRIPTION = "Open Asset Import Library"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=bc4231a2268da8fc55525ad119638a87"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=8b487f61647333d0b8ef3d2233e37ca2"
 
 DEPENDS += "zlib"
 
-PV = "3.1.1"
+PV = "3.2"
+PR = "r0"
 
-SRC_URI = "http://sourceforge.net/projects/assimp/files/assimp-3.1/assimp-${PV}_no_test_models.zip"
-SRC_URI[md5sum] = "ccd4788204509da58a3a53c7aeda7a8b"
-SRC_URI[sha256sum] = "da9827876f10a8b447270368753392cfd502e70a2e9d1361554e5dfcb1fede9e"
+SRC_URI = "git://github.com/assimp/assimp.git;tag=v${PV};protocol=https"
 
-S = "${WORKDIR}/assimp-${PV}"
+S = "${WORKDIR}/git"
 
 inherit cmake
 
 EXTRA_OECMAKE += "-DBUILD_SHARED_LIBS=OFF"
 
-FILES_${PN}-dev += "${libdir}/cmake/assimp-3.1/*.cmake"
+FILES_${PN}-dev += "${libdir}/cmake/assimp-3.2/*.cmake"
