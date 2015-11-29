@@ -5,9 +5,6 @@ QT_MODULE = "qtbase"
 SRC_URI += " \
 	file://0001-enable-yocto-build.patch \
 	file://0004-always-use-static-zlib.patch \
-	file://qtquickcompiler \
-	file://qtquickcompiler.prf \
-	file://libQt5Core.so.${QT_VERSION} \
 "
 
 PACKAGECONFIG[release] = "-release,-debug"
@@ -122,12 +119,3 @@ do_configure() {
 		${QT_CONFIG_FLAGS}
 }
 
-do_install_append() {
-	install -m 755 ${WORKDIR}/qtquickcompiler ${D}${OE_QMAKE_PATH_HOST_BINS}
-	install -m 644 ${WORKDIR}/qtquickcompiler.prf ${D}${OE_QMAKE_PATH_HOST_DATA}/mkspecs/features
-	install -m 755 ${WORKDIR}/libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}
-	QTVERSION=${QT_VERSION}
-	ln -snf libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libQt5Core.so.${QTVERSION%.*}
-	ln -snf libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libQt5Core.so.${QTVERSION%%.*}
-	ln -snf libQt5Core.so.${QT_VERSION} ${D}${OE_QMAKE_PATH_HOST_LIBS}/libQt5Core.so
-}

@@ -7,6 +7,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/${LICENSE};md5=0835ade698e0bcf8
 S = "${WORKDIR}/git"
 
 inherit qmake5-static
+DEPENDS += "qtquickcompiler-static"
 
 FILES_${PN}-dbg += "/startup/.debug"
 FILES_${PN} += "/"

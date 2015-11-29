@@ -31,7 +31,7 @@ python perform_packagecopy_append () {
             os.remove(rmpath)
 }
 
-PACKAGES =. "${PN}-qmlplugins-dbg ${PN}-tools-dbg ${PN}-plugins-dbg ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-mkspecs ${PN}-examples-dev ${PN}-examples-staticdev ${PN}-examples-dbg ${PN}-examples "
+PACKAGES =. "${PN}-qmlplugins-dbg ${PN}-tools-dbg ${PN}-plugins-dbg ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-mkspecs "
 
 SOLIBS = ".so.*"
 SOLIBSDEV = ".so"
@@ -135,38 +135,5 @@ FILES_${PN}-staticdev += " \
 	${OE_QMAKE_PATH_PLUGINS}/*/*.a \
     ${OE_QMAKE_PATH_PLUGINS}/*/*/*.a \
     ${OE_QMAKE_PATH_PLUGINS}/*/*/*/*.a \
-"
-FILES_${PN}-examples = " \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/* \
-"
-FILES_${PN}-examples-dev = " \
-    ${OE_QMAKE_PATH_EXAMPLES}/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*/*/*/*${SOLIBSDEV} \
-"
-FILES_${PN}-examples-dbg = " \
-    ${OE_QMAKE_PATH_EXAMPLES}/.debug \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/.debug \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/.debug \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/.debug \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/.debug \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*/.debug \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*/*/.debug \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*/*/*/.debug \
-"
-FILES_${PN}-examples-staticdev = " \
-    ${OE_QMAKE_PATH_EXAMPLES}/*.a \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*.a \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*.a \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*.a \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*.a \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*/*.a \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*/*/*.a \
-    ${OE_QMAKE_PATH_EXAMPLES}/*/*/*/*/*/*/*/*.a \
 "
 

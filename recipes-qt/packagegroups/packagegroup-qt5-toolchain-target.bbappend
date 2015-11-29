@@ -40,3 +40,7 @@ RDEPENDS_${PN}_remove += " \
 	qtconnectivity-qmlplugins \
 "
 RDEPENDS_${PN}_remove += "libsqlite3-dev"
+
+RDEPENDS_${PN} += " \
+    target-qtquickcompiler \
+"
