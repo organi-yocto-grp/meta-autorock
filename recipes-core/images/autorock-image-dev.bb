@@ -1,7 +1,7 @@
 require autorock-image.inc
 
 IMAGE_FEATURES += "ssh-server-openssh"
-IMAGE_INSTALL += "openssh-keys"
+IMAGE_INSTALL += "openssh-keys openssl"
 
 IMAGE_INSTALL += " \
 	qtbase-plugins  qtbase-fonts \
