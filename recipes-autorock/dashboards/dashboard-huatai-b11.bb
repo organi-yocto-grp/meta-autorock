@@ -2,7 +2,7 @@ require dashboard.inc
 SUMMARY = "Huatai B11 dashboard application"
 
 SRC_URI += " \
-	git://git@git.autorock.com/huatai-dashboard/dashboard-b11.git;branch=${SRCBRANCH};protocol=ssh \
+	git://git@gitlab.autorock.com/huatai-dashboard/dashboard-b11.git;branch=${SRCBRANCH};protocol=ssh \
 	file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 

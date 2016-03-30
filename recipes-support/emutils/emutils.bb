@@ -7,7 +7,7 @@ SRCBRANCH = "master"
 PV = "1.1+git${SRCPV}"
 PR = "r0"
 
-SRC_URI = "git://git@git.autorock.com/sunxi/utils.git;branch=${SRCBRANCH};protocol=ssh"
+SRC_URI = "git://git@gitlab.autorock.com/sunxi/utils.git;branch=${SRCBRANCH};protocol=ssh"
 
 S = "${WORKDIR}/git"
 
