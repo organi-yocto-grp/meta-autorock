@@ -5,8 +5,8 @@ SRC_URI += "git://git@gitlab.autorock.com/huatai-dashboard/dashboard-a25.git;bra
 		file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
-SRCBRANCH = "master"
-SRCREV = "44ee87ef08cb167535018c5a573c1c1e2a6fce02"
+SRCBRANCH = "chinese"
+SRCREV = "79aeb79d2e36f68da465d341d5a833c4ed149268"
 PV = "1.0+git${SRCPV}"
 PR = "r0"
 
