@@ -6,7 +6,7 @@ SRC_URI += "git://git@gitlab.autorock.com/huatai-dashboard/dashboard-b21-scale.g
 "
 
 SRCBRANCH = "master-cpt"
-SRCREV = "14277ed5ca63b8edbc1af1207db8ae51d8b4534a"
+SRCREV = "d533e7776b3f74fc6086ce3b8533d3e71b195591"
 PV = "1.0+git${SRCPV}"
 PR = "r0"
 
