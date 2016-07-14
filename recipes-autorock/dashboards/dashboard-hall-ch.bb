@@ -6,7 +6,7 @@ SRC_URI += "git://git@gitlab.autorock.com/huatai-dashboard/dashboard-a25.git;bra
 "
 
 SRCBRANCH = "chinese"
-SRCREV = "79aeb79d2e36f68da465d341d5a833c4ed149268"
+SRCREV = "9ed2a988a318a844cb2fe63dde7826add4c316ff"
 PV = "1.0+git${SRCPV}"
 PR = "r0"
 
