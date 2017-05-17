@@ -1,0 +1,56 @@
+From e5ce2beb7363940f209fcee21791002af821e803 Mon Sep 17 00:00:00 2001
+From: chenzilin <chenzilin115@gmail.com>
+Date: Fri, 15 May 2015 17:12:24 +0800
+Subject: [PATCH] enable initfs and qtquickcompiler
+
+---
+ havalH6.pro  | 4 ++++
+ src/main.cpp | 6 +++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/havalH6.pro b/havalH6.pro
+index fb24244..a0021a6 100644
+--- a/havalH6.pro
++++ b/havalH6.pro
+@@ -11,6 +11,10 @@ TEMPLATE = app
+ #DEFINES += DEBUG_INFO_TO_FILE
+ #CONFIG += qtquickcompiler
+ 
++DEFINES += INITROOT_STARTUP
++LIBS += -linitroot_startup
++CONFIG += qtquickcompiler
++
+ CONFIG(release, debug|release) {
+ #        DEFINES += QT_NO_DEBUG_OUTPUT
+ }
+diff --git a/src/main.cpp b/src/main.cpp
+index 8b5be9c..1b8e3f7 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -17,6 +17,8 @@
+ #include "ring.h"
+ #include <carstatus.h>
+ 
++#include <initroot_startup.h>
++
+ static pid_t pid;
+ static bool exit_loop = true;
+ 
+@@ -110,11 +112,13 @@ int server_main(int argc, char *argv[])
+ 	viewer.show();
+ 	qDebug() << "8.After Show app: " << QTime::currentTime();
+ 
+-	return app.exec();
++    return startup_end(app.exec);
+ }
+ 
+ int main(int argc, char **argv)
+ {
++    startup_begin();
++
+ 	qDebug() << "1.enter main process of njgdbus: " << QTime::currentTime();
+ 
+ 	if (signal(SIGINT, signal_handler) == SIG_ERR ||
+-- 
+1.9.1
+

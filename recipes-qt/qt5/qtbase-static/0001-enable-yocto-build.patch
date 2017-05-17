@@ -1,0 +1,106 @@
+From 05cfdef4420d2e107bdec4292b97b4f0d937b28a Mon Sep 17 00:00:00 2001
+From: wangyinnian <wangyinnian@autorock.com.cn>
+Date: Wed, 10 May 2017 13:03:10 +0800
+Subject: [PATCH] enable-yocto-build
+
+---
+ configure                                    | 20 ----------------
+ mkspecs/devices/linux-oe-g++/qmake.conf      | 13 +++++++++++
+ mkspecs/devices/linux-oe-g++/qplatformdefs.h | 34 ++++++++++++++++++++++++++++
+ 3 files changed, 47 insertions(+), 20 deletions(-)
+ create mode 100755 mkspecs/devices/linux-oe-g++/qmake.conf
+ create mode 100755 mkspecs/devices/linux-oe-g++/qplatformdefs.h
+
+diff --git a/configure b/configure
+index cea62fb..b6fd7cf 100755
+--- a/configure
++++ b/configure
+@@ -565,26 +565,6 @@ fi
+ #-------------------------------------------------------------------------------
+ 
+ SYSTEM_VARIABLES="AR RANLIB STRIP OBJDUMP LD CC CXX CFLAGS CXXFLAGS LDFLAGS"
+-for varname in $SYSTEM_VARIABLES; do
+-    qmakevarname="${varname}"
+-    qmakecmdargs=""
+-    # use LDFLAGS for autoconf compat, but qmake uses QMAKE_LFLAGS
+-    if [ "${varname}" = "LDFLAGS" ]; then
+-        qmakevarname="LFLAGS"
+-    elif [ "${varname}" = "LD" ]; then
+-        qmakevarname="LINK"
+-    elif [ "${varname}" = "AR" ]; then
+-        # QMAKE_AR needs to be set to "/path/to/ar cqs" but the
+-        # environment variable will be set to the command only so we
+-        # need to append " cqs" for autoconf compatibility
+-        qmakecmdargs=" cqs"
+-    fi
+-    cmd=`echo \
+-'if [ -n "\$'${varname}'" ]; then
+-    QMakeVar set QMAKE_'${qmakevarname}' "\$'${varname}${qmakecmdargs}'"
+-fi'`
+-    eval "$cmd"
+-done
+ 
+ # Use CC/CXX to run config.tests
+ mkdir -p "$outpath/config.tests"
+diff --git a/mkspecs/devices/linux-oe-g++/qmake.conf b/mkspecs/devices/linux-oe-g++/qmake.conf
+new file mode 100755
+index 0000000..da87b40
+--- /dev/null
++++ b/mkspecs/devices/linux-oe-g++/qmake.conf
+@@ -0,0 +1,13 @@
++#
++# qmake configuration for the Freescale iMX6 boards (single, dual and quad)
++#
++
++include(../common/linux_device_pre.conf)
++
++QMAKE_CFLAGS       += $${OE_QMAKE_CFLAGS}
++QMAKE_CXXFLAGS   += $${OE_QMAKE_CXXFLAGS}
++QMAKE_LFLAGS        += $${OE_QMAKE_LFLAGS}
++
++include(../common/linux_device_post.conf)
++
++load(qt_config)
+diff --git a/mkspecs/devices/linux-oe-g++/qplatformdefs.h b/mkspecs/devices/linux-oe-g++/qplatformdefs.h
+new file mode 100755
+index 0000000..5ae49b3
+--- /dev/null
++++ b/mkspecs/devices/linux-oe-g++/qplatformdefs.h
+@@ -0,0 +1,34 @@
++/****************************************************************************
++**
++** Copyright (C) 2015 The Qt Company Ltd.
++** Contact: http://www.qt.io/licensing/
++**
++** This file is part of the qmake spec of the Qt Toolkit.
++**
++** $QT_BEGIN_LICENSE:LGPL21$
++** Commercial License Usage
++** Licensees holding valid commercial Qt licenses may use this file in
++** accordance with the commercial license agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and The Qt Company. For licensing terms
++** and conditions see http://www.qt.io/terms-conditions. For further
++** information use the contact form at http://www.qt.io/contact-us.
++**
++** GNU Lesser General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU Lesser
++** General Public License version 2.1 or version 3 as published by the Free
++** Software Foundation and appearing in the file LICENSE.LGPLv21 and
++** LICENSE.LGPLv3 included in the packaging of this file. Please review the
++** following information to ensure the GNU Lesser General Public License
++** requirements will be met: https://www.gnu.org/licenses/lgpl.html and
++** http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
++**
++** As a special exception, The Qt Company gives you certain additional
++** rights. These rights are described in The Qt Company LGPL Exception
++** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
++**
++** $QT_END_LICENSE$
++**
++****************************************************************************/
++
++#include "../../linux-g++/qplatformdefs.h"
+-- 
+1.9.1
+

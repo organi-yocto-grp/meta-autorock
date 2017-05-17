@@ -1,0 +1,27 @@
+From 50938154c0c3b6ebe28076f5350b0e589008f302 Mon Sep 17 00:00:00 2001
+From: wangyinnian <wangyinnian@autorock.com.cn>
+Date: Wed, 10 May 2017 10:34:23 +0800
+Subject: [PATCH] always-use-static-zlib
+
+---
+ src/3rdparty/zlib_dependency.pri | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ mode change 100644 => 100755 src/3rdparty/zlib_dependency.pri
+
+diff --git a/src/3rdparty/zlib_dependency.pri b/src/3rdparty/zlib_dependency.pri
+old mode 100644
+new mode 100755
+index 0bcb9f9..ca9b384
+--- a/src/3rdparty/zlib_dependency.pri
++++ b/src/3rdparty/zlib_dependency.pri
+@@ -1,6 +1,6 @@
+ # zlib dependency satisfied by bundled 3rd party zlib or system zlib
+ contains(QT_CONFIG, system-zlib) {
+-    if(unix|mingw):LIBS_PRIVATE += -lz
++    if(unix|mingw):LIBS_PRIVATE += -Wl,-Bstatic -lz -Wl,-Bdynamic
+     else {
+         isEmpty(ZLIB_LIBS): LIBS += zdll.lib
+         else: LIBS += $$ZLIB_LIBS
+-- 
+1.9.1
+
