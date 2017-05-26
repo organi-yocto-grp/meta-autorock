@@ -7,7 +7,6 @@ ICU_VERSION = "54.1"
 SRC_URI += " \
 	file://0001-enable-yocto-build.patch \
 	file://0004-always-use-static-zlib.patch \
-	file://0005-add-qeglfshooks_imx6.cpp.patch \ 
 	file://qtquickcompiler \
 	file://qtquickcompiler.prf \
 	file://libQt5Core.so.${QT_VERSION} \
@@ -84,9 +83,6 @@ QT_CONFIG_FLAGS += " \
 	-optimized-qmake \
     ${EXTRA_OECONF} \
 "
-
-EGLFS_SOURCE_mx6 = "${S}/mkspecs/devices/linux-imx6-g++/qeglfshooks_imx6.cpp"
-EGLFS_SOURCE_a20navi = "${S}/mkspecs/devices/linux-sunxi-g++/qeglfshooks_sunxi.cpp"
 
 EXTRA_COMPILER_FLAGS ?= ""
 EXTRA_LINKER_FLAGS ?= ""

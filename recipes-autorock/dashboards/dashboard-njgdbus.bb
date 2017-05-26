@@ -1,30 +1,20 @@
 require dashboard.inc
-SUMMARY = "Dashboard application for Project Lavender"
+SUMMARY = "NJGDBUS dashboard application"
 
-SRC_URI += "git://git@gitlab.autorock.com/huatai-dashboard/dashboard-b21-scale.git;branch=${SRCBRANCH};protocol=ssh \
-		file://0001-enable-initfs-and-qtquickcompiler.patch \
+SRC_URI += "git://git@gitlab.autorock.com/WinterJasmine/dashboard.git;tag=v${PV};protocol=ssh \
+	file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
-SRCBRANCH = "master"
-SRCREV = "9c9ea4b69809bf29f45c7d47045530967e3b7380"
-PV = "1.0+git${SRCPV}"
+PV = "1.0.4"
 PR = "r0"
 
-DEPENDS += " \
-        qtdeclarative-static qtserialport-static qtgraphicaleffects-static \
-        qt3d-static \
-        qtquickcontrols-static \
-"
+DEPENDS += "qtdeclarative-static qtserialport-static"
 
-RDEPENDS_${PN} = " \
-        qtdeclarative-static-qmlplugins qtgraphicaleffects-static-qmlplugins \
-        qt3d-static-qmlplugins \
-        qtquickcontrols-static-qmlplugins \
-"
+RDEPENDS_${PN} = "qtdeclarative-static-qmlplugins"
 
 do_install() {
 	install -d ${D}/startup
-	install -m 0755 ${B}/bin/huatai-b21 ${D}/startup/run
+	install -m 0755 ${B}/bin/njgdbus ${D}/startup/run
 
 	install -d ${D}${libdir}
 	cp -a ${S}/fonts ${D}${libdir}
