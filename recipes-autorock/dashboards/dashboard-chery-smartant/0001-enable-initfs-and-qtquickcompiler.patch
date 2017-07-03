@@ -1,0 +1,54 @@
+From 7b598ff50c4fbb248ed0e2f492398e0a00c7db86 Mon Sep 17 00:00:00 2001
+From: wangyinnian <wangyinnian@autorock.com.cn>
+Date: Thu, 1 Jun 2017 10:22:50 +0800
+Subject: [PATCH] enable initfs and qtquickcompiler
+
+---
+ camera.pro | 4 ++++
+ main.cpp   | 4 +++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/camera.pro b/camera.pro
+index 23b603a..6578da4 100755
+--- a/camera.pro
++++ b/camera.pro
+@@ -40,6 +40,10 @@ HEADERS += \
+ #    HEADERS += pc_camera.h
+ #}
+ 
++DEFINES += INITROOT_STARTUP
++LIBS += -linitroot_startup
++CONFIG += qtquickcompiler
++ 
+ # Qml Files
+ OTHER_FILES += main.qml
+ 
+diff --git a/main.cpp b/main.cpp
+index 0dcc782..00a3fe6 100755
+--- a/main.cpp
++++ b/main.cpp
+@@ -15,6 +15,7 @@
+ #include <QCommandLineParser>
+ #include <QQmlApplicationEngine>
+ #include "camera_player.h"
++#include <initroot_startup.h>
+ 
+ static pid_t pid;
+ static bool exit_loop = true;
+@@ -83,11 +84,12 @@ int server_main(int argc, char *argv[])
+     viewer.setSource(QUrl("qrc:///main.qml"));
+     viewer.show();
+ 
+-    return app.exec();
++    return startup_end(app.exec);
+ }
+ 
+ int main(int argc, char **argv)
+ {
++	startup_begin();
+ 	if (signal(SIGINT, signal_handler) == SIG_ERR ||
+ 			signal(SIGTERM, signal_handler) == SIG_ERR) {
+ 		qDebug() << "main process register signal handler fail\n";
+-- 
+1.9.1
+

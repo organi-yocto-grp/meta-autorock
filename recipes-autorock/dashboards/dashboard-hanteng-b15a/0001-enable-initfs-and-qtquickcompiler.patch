@@ -1,36 +1,35 @@
-diff --git a/huatai.pro b/huatai.pro
-index a27df84..a0b9e2b 100644
---- a/huatai.pro
-+++ b/huatai.pro
-@@ -13,6 +13,10 @@ CONFIG(release, debug|release) {
-         DEFINES += QT_NO_DEBUG_OUTPUT
- }
- 
+diff --git a/ZTB15A2.pro b/ZTB15A2.pro
+index 62e34a6..0a86c29 100644
+--- a/ZTB15A2.pro
++++ b/ZTB15A2.pro
+@@ -5,6 +5,9 @@ RESOURCES += qml.qrc
+ SOURCE_FOLDER = src
+ HEADER_FOLDER = src/include
+ QML_FOLDER=qml
 +DEFINES += INITROOT_STARTUP
 +LIBS += -linitroot_startup
 +CONFIG += qtquickcompiler
-+
- # Sources and Headers
- SOURCE_FOLDER = src
- HEADER_FOLDER = src/include
+ INCLUDEPATH += $$HEADER_FOLDER
+ HEADERS += $$HEADER_FOLDER/serial.h \
+     $$HEADER_FOLDER/protocol.h \
 diff --git a/src/main.cpp b/src/main.cpp
-index cec9361..60a2cc6 100644
+index 5c51a23..70e3191 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
-@@ -15,7 +15,7 @@
- 
- #include <ring.h>
+@@ -16,6 +16,7 @@
+ #include <QQmlApplicationEngine>
  #include <htcarstatus.h>
--
+ #include <fontName.h>
 +#include <initroot_startup.h>
  static pid_t pid;
  static bool exit_loop = true;
  
-@@ -95,11 +95,12 @@ int server_main(int argc, char *argv[])
+@@ -94,11 +95,13 @@ int server_main(int argc, char *argv[])
  	app.connect(viewer.engine(),&QQmlEngine::quit, &QGuiApplication::quit);
  	viewer.show();
  
 -	return app.exec();
++//	return app.exec();
 +	return startup_end(app.exec);
  }
  

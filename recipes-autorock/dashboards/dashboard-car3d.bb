@@ -1,7 +1,7 @@
 require dashboard.inc
 SUMMARY = "car3d demo for glitem"
 
-SRC_URI += "git://git@gitlab.autorock.com/dashboards/car3d.git;branch=${SRCBRANCH};protocol=ssh \
+SRC_URI += "git://git@zkgit.iask.in/dashboards/car3d.git;branch=${SRCBRANCH};protocol=ssh \
 	file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 

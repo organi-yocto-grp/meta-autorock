@@ -1,0 +1,88 @@
+From 1f79a88b88b954941e612fb655de466245852dc1 Mon Sep 17 00:00:00 2001
+From: wangyinnian <wangyinnian@autorock.com.cn>
+Date: Mon, 3 Jul 2017 11:43:04 +0800
+Subject: [PATCH] add qmldir
+
+---
+ qml/qmldir | 69 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 69 insertions(+)
+ create mode 100644 qml/qmldir
+
+diff --git a/qml/qmldir b/qml/qmldir
+new file mode 100644
+index 0000000..54fa270
+--- /dev/null
++++ b/qml/qmldir
+@@ -0,0 +1,69 @@
++DashboardPanel DashboardPanel.qml
++Fps Fps.qml
++main main.qml
++ScrCheck ScrCheck.qml
++Splash Splash.qml
++Classic Classic.qml
++DigitValue DigitValue.qml
++FIR_Menu FIR_Menu.qml
++Igoff Igoff.qml
++Leftneedle Leftneedle.qml
++LeftPanel LeftPanel.qml
++Llight Llight.qml
++MidPanel MidPanel.qml
++Rightneedle Rightneedle.qml
++RightPanel RightPanel.qml
++Rlight Rlight.qml
++SEC_Carinfoset SEC_Carinfoset.qml
++SEC_Carmain SEC_Carmain.qml
++SEC_Menu SEC_Menu.qml
++SEC_Mode SEC_Mode.qml
++SEC_Nevigation SEC_Nevigation.qml
++SEC_Set SEC_Set.qml
++THR_Mode1 THR_Mode1.qml
++THR_Mode2 THR_Mode2.qml
++THR_Mode3 THR_Mode3.qml
++THR_Mode4 THR_Mode4.qml
++WarningPanel WarningPanel.qml
++Carinfocx Carinfocx.qml
++DigitValue DigitValue.qml
++DoorOpen DoorOpen.qml
++Navigation Navigation.qml
++PEPSGuide PEPSGuide.qml
++Refuel Refuel.qml
++RoadLeave RoadLeave.qml
++Saftybelt Saftybelt.qml
++Speedover Speedover.qml
++Tireddrive Tireddrive.qml
++TirePress TirePress.qml
++Backlight Backlight.qml
++Language Language.qml
++Reset Reset.qml
++Speedlimit Speedlimit.qml
++Timeset Timeset.qml
++Verinfo Verinfo.qml
++Bg Bg.qml
++DigitValue DigitValue.qml
++Function Function.qml
++Llight Llight.qml
++OutFrame OutFrame.qml
++Rlight Rlight.qml
++Simplemain Simplemain.qml
++WarningPanel WarningPanel.qml
++CenterPanel CenterPanel.qml
++DigitValue DigitValue.qml
++Function Function.qml
++LeftPanel LeftPanel.qml
++Llight Llight.qml
++main main.qml
++RightPanel RightPanel.qml
++Rlight Rlight.qml
++WarningPanel WarningPanel.qml
++DigitValue DigitValue.qml
++Llight Llight.qml
++Rlight Rlight.qml
++Tech_Center Tech_Center.qml
++Tech_left Tech_left.qml
++Tech_main Tech_main.qml
++Tech_right Tech_right.qml
++WarningPanel WarningPanel.qml
+-- 
+1.9.1
+

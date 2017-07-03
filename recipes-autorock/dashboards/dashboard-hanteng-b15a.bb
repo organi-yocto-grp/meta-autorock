@@ -1,12 +1,17 @@
 require dashboard.inc
 SUMMARY = "Dashboard application for Project Carnation"
 
-SRC_URI += "git://git@zkgit.iask.in/hongqi-dashboard/hongqi-dashboard-b70-forShow.git;branch=${SRCBRANCH};protocol=ssh \
+#SRC_URI += "git://git@zkgit.iask.in/ZTB15Y/07_Release.git;branch=${SRCBRANCH};protocol=ssh \
+#	file://0001-enable-initfs-and-qtquickcompiler.patch \
+#"
+SRC_URI += "git://git@zkgit.iask.in/yangmengkui/07_Release.git;branch=${SRCBRANCH};protocol=ssh \
 	file://0001-enable-initfs-and-qtquickcompiler.patch \
+	file://0002-add-qmldir.patch \
 "
 
-SRCBRANCH = "master"
-SRCREV = "7a23c987128b9faf965a18c2e583b97001a6ca0b"
+SRCBRANCH = "B15a_wu"
+#SRCREV = "5ab6ab218153c5e4ecaf9c7840c0fbdadde06e5a"
+SRCREV = "${AUTOREV}"
 PV = "1.0+git${SRCPV}"
 PR = "r0"
 
@@ -16,7 +21,7 @@ RDEPENDS_${PN} = "qtdeclarative-static-qmlplugins  qtquickcontrols-static-qmlplu
 
 do_install() {
 	install -d ${D}/startup
-	install -m 0755 ${B}/bin/b70 ${D}/startup/run
+	install -m 0755 ${B}/ZTB15A2  ${D}/startup/run
 
 	install -d ${D}${libdir}
 	cp -a ${S}/fonts ${D}${libdir}

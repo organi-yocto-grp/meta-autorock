@@ -1,7 +1,7 @@
 require dashboard.inc
 SUMMARY = "Dashboard application for Project Todi"
 
-SRC_URI += "git://git@gitlab.autorock.com/Todi/05software-core.git;branch=${SRCBRANCH};protocol=ssh \
+SRC_URI += "git://git@zkgit.iask.in/Todi/05software-core.git;branch=${SRCBRANCH};protocol=ssh \
 	file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 

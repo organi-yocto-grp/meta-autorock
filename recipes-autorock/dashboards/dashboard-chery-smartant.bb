@@ -1,12 +1,12 @@
 require dashboard.inc
-SUMMARY = "Dashboard application for Project Todi"
+SUMMARY = "Dashboard application for Project Carnation"
 
-SRC_URI += "git://git@zkgit.iask.in/huatai-dashboard/dashboard-a25.git;branch=${SRCBRANCH};protocol=ssh \
+SRC_URI += "git://git@zkgit.iask.in/wangyinnian/smartAnt.git;branch=${SRCBRANCH};protocol=ssh \
 	file://0001-enable-initfs-and-qtquickcompiler.patch \
 "
 
 SRCBRANCH = "master"
-SRCREV = "646fed10baa0eda8f64fff61605043cc46f18951"
+SRCREV = "e31747ba9ad55e6cb0d312b95d5b9a05f77cca98"
 PV = "1.0+git${SRCPV}"
 PR = "r0"
 
@@ -16,7 +16,8 @@ RDEPENDS_${PN} = "qtdeclarative-static-qmlplugins  qtquickcontrols-static-qmlplu
 
 do_install() {
 	install -d ${D}/startup
-	install -m 0755 ${B}/bin/huatai-a25 ${D}/startup/run
+	install -m 0755 ${B}/bin/camera ${D}/startup/run
 
-	install -d ${D}${libdir}
+	#install -d ${D}${libdir}
+	#cp -a ${S}/fonts ${D}${libdir}
 }
