@@ -1,0 +1,55 @@
+From 31a6d4a248f845793af7c42dc79ce43ed3ddbf2b Mon Sep 17 00:00:00 2001
+From: Qiang Yu <yuq825@gmail.com>
+Date: Thu, 12 Feb 2015 19:29:56 +0800
+Subject: [PATCH] enable initfs and qtquickcompiler
+
+---
+ njgdbus.pro  | 5 ++++-
+ src/main.cpp | 4 +++-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/njgdbus.pro b/njgdbus.pro
+index 419fb67..f9b53ef 100644
+--- a/njgdbus.pro
++++ b/njgdbus.pro
+@@ -9,7 +9,10 @@ TEMPLATE = app
+ #DEFINES += CAN_DEBUG
+ #DEFINES += CAN_TIMER
+ #DEFINES += DEBUG_INFO_TO_FILE
+-#CONFIG += qtquickcompiler
++
++DEFINES += INITROOT_STARTUP
++LIBS += -linitroot_startup
++CONFIG += qtquickcompiler
+ 
+ CONFIG(release, debug|release) {
+ #        DEFINES += QT_NO_DEBUG_OUTPUT
+diff --git a/src/main.cpp b/src/main.cpp
+index 5ea3aee..0925c2c 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -13,6 +13,7 @@
+ #include <QGuiApplication>
+ #include <QCommandLineParser>
+ #include <QQmlApplicationEngine>
++#include <initroot_startup.h>
+ 
+ #include <ring.h>
+ #include <carstatus.h>
+@@ -108,11 +109,12 @@ int server_main(int argc, char *argv[])
+ 	viewer.show();
+ 	qDebug() << "8.After Show app: " << QTime::currentTime();
+ 
+-	return app.exec();
++	return startup_end(app.exec);
+ }
+ 
+ int main(int argc, char **argv)
+ {
++	startup_begin();
+ 	qDebug() << "1.enter main process of njgdbus: " << QTime::currentTime();
+ 
+ 	if (signal(SIGINT, signal_handler) == SIG_ERR ||
+-- 
+1.9.1
+

@@ -1,0 +1,42 @@
+diff --git a/huatai.pro b/huatai.pro
+index 441b55b..e738aac 100644
+--- a/huatai.pro
++++ b/huatai.pro
+@@ -12,7 +12,9 @@ DEFINES += TIMER_FREQ
+ CONFIG(release, debug|release) {
+         DEFINES += QT_NO_DEBUG_OUTPUT
+ }
+-
++DEFINES += INITROOT_STARTUP
++LIBS += -linitroot_startup
++CONFIG += qtquickcompiler
+ # Sources and Headers
+ SOURCE_FOLDER = src
+ HEADER_FOLDER = src/include
+diff --git a/src/main.cpp b/src/main.cpp
+index a8d80fe..2cc907a 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -18,6 +18,7 @@
+ #include <ring.h>
+ #include <htcarstatus.h>
+ #include <fontName.h>
++#include <initroot_startup.h>
+ 
+ static pid_t pid;
+ static bool exit_loop = true;
+@@ -100,11 +101,13 @@ int server_main(int argc, char *argv[])
+ 	app.connect(viewer.engine(),&QQmlEngine::quit, &QGuiApplication::quit);
+ 	viewer.show();
+ 
+-	return app.exec();
++//	return app.exec();
++	return startup_end(app.exec);
+ }
+ 
+ int main(int argc, char **argv)
+ {
++	startup_begin();
+ 	if (signal(SIGINT, signal_handler) == SIG_ERR ||
+ 			signal(SIGTERM, signal_handler) == SIG_ERR) {
+ 		qDebug() << "main process register signal handler fail\n";

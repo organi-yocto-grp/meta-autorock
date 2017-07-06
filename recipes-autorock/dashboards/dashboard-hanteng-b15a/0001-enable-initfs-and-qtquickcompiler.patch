@@ -1,0 +1,41 @@
+diff --git a/ZTB15A2.pro b/ZTB15A2.pro
+index 62e34a6..0a86c29 100644
+--- a/ZTB15A2.pro
++++ b/ZTB15A2.pro
+@@ -5,6 +5,9 @@ RESOURCES += qml.qrc
+ SOURCE_FOLDER = src
+ HEADER_FOLDER = src/include
+ QML_FOLDER=qml
++DEFINES += INITROOT_STARTUP
++LIBS += -linitroot_startup
++CONFIG += qtquickcompiler
+ INCLUDEPATH += $$HEADER_FOLDER
+ HEADERS += $$HEADER_FOLDER/serial.h \
+     $$HEADER_FOLDER/protocol.h \
+diff --git a/src/main.cpp b/src/main.cpp
+index 5c51a23..70e3191 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -16,6 +16,7 @@
+ #include <QQmlApplicationEngine>
+ #include <htcarstatus.h>
+ #include <fontName.h>
++#include <initroot_startup.h>
+ static pid_t pid;
+ static bool exit_loop = true;
+ 
+@@ -94,11 +95,13 @@ int server_main(int argc, char *argv[])
+ 	app.connect(viewer.engine(),&QQmlEngine::quit, &QGuiApplication::quit);
+ 	viewer.show();
+ 
+-	return app.exec();
++//	return app.exec();
++	return startup_end(app.exec);
+ }
+ 
+ int main(int argc, char **argv)
+ {
++	startup_begin();
+ 	if (signal(SIGINT, signal_handler) == SIG_ERR ||
+ 			signal(SIGTERM, signal_handler) == SIG_ERR) {
+ 		qDebug() << "main process register signal handler fail\n";

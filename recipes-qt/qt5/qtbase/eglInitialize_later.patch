@@ -1,0 +1,67 @@
+From 009ff462dffe9f4b8b60865088bac4f0357d0e9f Mon Sep 17 00:00:00 2001
+From: wangyinnian <wangyinnian@autorock.com.cn>
+Date: Wed, 10 May 2017 10:18:09 +0800
+Subject: [PATCH] eglInitialize_later
+
+---
+ .../eglconvenience/qeglplatformintegration.cpp        | 19 +++++++++++++++++--
+ .../eglconvenience/qeglplatformintegration_p.h        |  1 +
+ 2 files changed, 18 insertions(+), 2 deletions(-)
+
+diff --git a/src/platformsupport/eglconvenience/qeglplatformintegration.cpp b/src/platformsupport/eglconvenience/qeglplatformintegration.cpp
+index 1868ff1..bffabd4 100755
+--- a/src/platformsupport/eglconvenience/qeglplatformintegration.cpp
++++ b/src/platformsupport/eglconvenience/qeglplatformintegration.cpp
+@@ -106,13 +106,27 @@ void QEGLPlatformIntegration::initialize()
+     if (m_display == EGL_NO_DISPLAY)
+         qFatal("Could not open egl display");
+ 
++//    EGLint major, minor;
++//    if (!eglInitialize(m_display, &major, &minor))
++//       qFatal("Could not initialize egl display");
++
++    m_inputContext = QPlatformInputContextFactory::create();
++
++    m_vtHandler.reset(new QFbVtHandler);
++}
++
++void QEGLPlatformIntegration::create_initialize() const
++{
++    static int once=0;
++    if(once)
++        return;
++
+     EGLint major, minor;
+     if (!eglInitialize(m_display, &major, &minor))
+         qFatal("Could not initialize egl display");
+ 
+-    m_inputContext = QPlatformInputContextFactory::create();
++    once++;
+ 
+-    m_vtHandler.reset(new QFbVtHandler);
+ }
+ 
+ void QEGLPlatformIntegration::destroy()
+@@ -151,6 +165,7 @@ QPlatformBackingStore *QEGLPlatformIntegration::createPlatformBackingStore(QWind
+ QPlatformWindow *QEGLPlatformIntegration::createPlatformWindow(QWindow *window) const
+ {
+     QWindowSystemInterface::flushWindowSystemEvents();
++    create_initialize();
+     QEGLPlatformWindow *w = createWindow(window);
+     w->create();
+     if (window->type() != Qt::ToolTip)
+diff --git a/src/platformsupport/eglconvenience/qeglplatformintegration_p.h b/src/platformsupport/eglconvenience/qeglplatformintegration_p.h
+index 42fbf8c..b650538 100755
+--- a/src/platformsupport/eglconvenience/qeglplatformintegration_p.h
++++ b/src/platformsupport/eglconvenience/qeglplatformintegration_p.h
+@@ -64,6 +64,7 @@ public:
+     ~QEGLPlatformIntegration();
+ 
+     void initialize() Q_DECL_OVERRIDE;
++    void create_initialize() const;
+     void destroy() Q_DECL_OVERRIDE;
+ 
+     EGLDisplay display() const { return m_display; }
+-- 
+1.9.1
+

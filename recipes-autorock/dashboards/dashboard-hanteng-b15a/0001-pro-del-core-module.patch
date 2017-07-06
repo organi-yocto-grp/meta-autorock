@@ -1,0 +1,26 @@
+From bed9dc772224815a4e935a8d8f81b48d30333de0 Mon Sep 17 00:00:00 2001
+From: wangyinnian <wangyinnian@autorock.com.cn>
+Date: Wed, 5 Jul 2017 20:14:36 +0800
+Subject: [PATCH] .pro del core module
+
+---
+ ZTB15A2.pro | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ mode change 100644 => 100755 ZTB15A2.pro
+
+diff --git a/ZTB15A2.pro b/ZTB15A2.pro
+old mode 100644
+new mode 100755
+index 62e34a6..27e76d0
+--- a/ZTB15A2.pro
++++ b/ZTB15A2.pro
+@@ -1,5 +1,5 @@
+ TEMPLATE = app
+-QT += core qml quick serialport
++QT += qml quick serialport
+ RESOURCES += qml.qrc
+ # Additional import path used to resolve QML modules in Qt Creator's code model
+ SOURCE_FOLDER = src
+-- 
+1.9.1
+

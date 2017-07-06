@@ -1,0 +1,77 @@
+From e3b8d6b01ceaab235d923dcbdc2eb95ed85ddb2d Mon Sep 17 00:00:00 2001
+From: wangyinnian <wangyinnian@autorock.com.cn>
+Date: Thu, 6 Jul 2017 14:53:01 +0800
+Subject: [PATCH] eglInitialize_later
+
+---
+ .../platforms/eglfs/api/qeglfsintegration.cpp       | 21 ++++++++++++++++++---
+ .../platforms/eglfs/api/qeglfsintegration_p.h       |  1 +
+ 2 files changed, 19 insertions(+), 3 deletions(-)
+ mode change 100644 => 100755 src/plugins/platforms/eglfs/api/qeglfsintegration.cpp
+ mode change 100644 => 100755 src/plugins/platforms/eglfs/api/qeglfsintegration_p.h
+
+diff --git a/src/plugins/platforms/eglfs/api/qeglfsintegration.cpp b/src/plugins/platforms/eglfs/api/qeglfsintegration.cpp
+old mode 100644
+new mode 100755
+index 9a0be48..c172afc
+--- a/src/plugins/platforms/eglfs/api/qeglfsintegration.cpp
++++ b/src/plugins/platforms/eglfs/api/qeglfsintegration.cpp
+@@ -138,9 +138,9 @@ void QEglFSIntegration::initialize()
+     if (Q_UNLIKELY(m_display == EGL_NO_DISPLAY))
+         qFatal("Could not open egl display");
+ 
+-    EGLint major, minor;
+-    if (Q_UNLIKELY(!eglInitialize(m_display, &major, &minor)))
+-        qFatal("Could not initialize egl display");
++//    EGLint major, minor;
++//    if (Q_UNLIKELY(!eglInitialize(m_display, &major, &minor)))
++//        qFatal("Could not initialize egl display");
+ 
+     m_inputContext = QPlatformInputContextFactory::create();
+ 
+@@ -156,6 +156,20 @@ void QEglFSIntegration::initialize()
+         createInputHandlers();
+ }
+ 
++void QEglFSIntegration::create_initialize() const
++{
++    static int once=0;
++    if(once)
++        return;
++
++    EGLint major, minor;
++    if (Q_UNLIKELY(!eglInitialize(m_display, &major, &minor)))
++        qFatal("Could not initialize egl display");
++
++    once++;
++
++}
++
+ void QEglFSIntegration::destroy()
+ {
+     foreach (QWindow *w, qGuiApp->topLevelWindows())
+@@ -205,6 +219,7 @@ QPlatformBackingStore *QEglFSIntegration::createPlatformBackingStore(QWindow *wi
+ QPlatformWindow *QEglFSIntegration::createPlatformWindow(QWindow *window) const
+ {
+     QWindowSystemInterface::flushWindowSystemEvents(QEventLoop::ExcludeUserInputEvents);
++    create_initialize();
+     QEglFSWindow *w = qt_egl_device_integration()->createWindow(window);
+     w->create();
+ 
+diff --git a/src/plugins/platforms/eglfs/api/qeglfsintegration_p.h b/src/plugins/platforms/eglfs/api/qeglfsintegration_p.h
+old mode 100644
+new mode 100755
+index c288876..245be72
+--- a/src/plugins/platforms/eglfs/api/qeglfsintegration_p.h
++++ b/src/plugins/platforms/eglfs/api/qeglfsintegration_p.h
+@@ -70,6 +70,7 @@ public:
+     QEglFSIntegration();
+ 
+     void initialize() override;
++    void create_initialize() const;
+     void destroy() override;
+ 
+     EGLDisplay display() const { return m_display; }
+-- 
+1.9.1
+
